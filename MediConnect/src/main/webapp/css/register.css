@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Montserrat", sans-serif;
+}
+
+body{
+    background-color: #f6f6f6;
+}
+
+.form-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.register{
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+.register-form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 600px;
+    padding: 30px;
+    align-items: center;
+    gap: 30px;
+    border-radius: 25px;
+}
+
+.form-header{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.register-form img{
+    width: 200px;
+    height: 50px;
+}
+.form-row {
+    display: flex;
+    flex-direction: row;
+    gap: 90px;
+    margin-bottom: 20px;
+}
+.form-column{
+    display: flex;
+    flex-direction: column;
+}
+form input,select{
+    border-radius: 12px;
+    height: 45px;
+    width: 200px;
+    border: 0px;
+    padding: 0px 20px;
+    background-color: #f0f4f9;
+}
+.register-form label{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.register-form select{
+    width: 239px;
+}
+.signup-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.signup-buttons button{
+    width: 270px;
+    background-color: #0057D9;
+    color: white;
+    border-radius: 25px;
+    height: 50px;
+    font-weight: bold;
+}
+
+.signup{
+	cursor: pointer;
+	border: none;
+}
+

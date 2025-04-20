@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Montserrat", sans-serif;
+}
+body {
+  background-color: #f6f6f6;
+}
+
+.main-container {
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  background: white;
+  padding: 40px 70px 40px 70px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form-container h1 {
+  margin: 40px 0 40px 0;
+}
+
+.label-div {
+  width: 87%;
+  margin-bottom: 10px;
+}
+
+.label-div label {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-container input {
+  width: 100%;
+  height: 7vh;
+  border-radius: 20px;
+  outline: none;
+  border: 1px transparent;
+  background-color: #f6f6f6;
+  padding: 0px 20px;
+  font-size: 17px;
+  box-sizing: border-box;
+  margin: 0 0 20px 0;
+}
+
+.login-btn-form {
+  width: 100%;
+  padding: 20px 20px;
+  background-color: #0057d9;
+  border-radius: 40px;
+  border: 0px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px 0 30px 0;
+  cursor: pointer;
+}
+
+.form-container p {
+  font-weight: 600;
+}
+
+.form-container a {
+  color: black;
+}
+
+
+.error-message{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 20px;
+	padding: 30px;
+}
+
+.error-message a{
+	padding: 10px 20px;
+	color: black;
+	border: 1px solid black;
+}

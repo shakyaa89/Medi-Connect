@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Montserrat", sans-serif;
+}
+
+body{
+    background-color: #f6f6f6;
+}
+
+.hero {
+    background-image: url('../images/home.jpg');
+    background-size:cover;
+    background-position: center;
+    color: white;
+    height: 90vh;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 90px;
+}
+
+.hero-text {
+    flex: 1;
+    margin-left: 50px;
+    margin-top: 190px;
+}
+
+.hero-text h1 {
+    font-size: 4.5em;
+    margin-bottom: 20px;
+    color: black;
+    line-height: 1.2;
+    font-weight: 60;
+}
+
+.appointment-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.appointment-btn:hover {
+    background-color: #0056b3;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.doctors-section {
+    padding: 100px;
+    text-align: center;
+}
+
+.doctors-section h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.underline {
+    width: 100px;
+    height: 3px;
+    background-color: #0052cc;
+    margin: 0 auto 40px;
+}
+
+.doctors-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.doctor-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: left;
+    min-width: 200px;
+    max-width: 300px;
+    height: 160px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.doctor-image {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.doctor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.doctor-info {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.doctor-card h3 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.doctor-card p {
+    font-size: 0.8rem;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.healthcare-section{
+    background-color: #0052cc;
+    padding: 30px 0px;
+    align-items: center;
+    margin: 30px 0px;
+}
+.content-container{
+    margin: 40px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+.section-content{
+    background-color: white;
+    padding: 25px 50px;
+    height: 400px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+.section-title{
+    font-size: 2.5em;
+    font-weight: 60;
+}
+
+.healthcare-section-image img{
+    height:400px;
+    width: 400px;
+    border-radius: 100%;
+
+}
+.healthcare-section-buttons{
+    display: flex;
+    gap: 30px;
+}
+
+
