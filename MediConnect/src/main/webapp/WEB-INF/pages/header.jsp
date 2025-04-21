@@ -47,8 +47,8 @@
             <ul>
               <li><a href="index">Home</a></li>
               <li><a href="#">Blog</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li><a href="AboutUs">About Us</a></li>
+              <li><a href="ContactUs">Contact Us</a></li>
               
               <c:choose>
               <c:when test="${currentRole == 'Admin'}">

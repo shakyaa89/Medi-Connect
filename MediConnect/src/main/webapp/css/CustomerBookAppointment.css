@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: inherit;
+}
+
+body{
+    background-color: #f6f6f6;
+}
+
+.main-content {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.list-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.details-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.details-grid p {
+  margin-bottom: 10px;
+}
+
+.selectors {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.doctor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-group label,
+.doctor label {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.input-group input,
+.select-field {
+  padding: 10px;
+  background: #f0f4fa;
+  border: none;
+  border-radius: 10px;
+}
+
+.book-btn {
+  padding: 12px 20px;
+  background-color: #3a82f7;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+

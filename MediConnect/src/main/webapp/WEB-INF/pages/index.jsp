@@ -26,7 +26,7 @@
         <div class="doctors-grid">
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="${pageContext.request.contextPath}/image/home.jpg" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. Sarah Johnson</h3>
@@ -35,7 +35,7 @@
             </div>
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="./doctor.png" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. Michael Chen</h3>
@@ -45,7 +45,7 @@
             
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="./doctor.png" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. Emily Smith</h3>
@@ -55,7 +55,7 @@
             
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="./doctor.png" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. Robert Wilson</h3>
@@ -65,7 +65,7 @@
             
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="./doctor.png" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. Amanda Lee</h3>
@@ -75,7 +75,7 @@
             
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="./doctor.png" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. David Patel</h3>
@@ -85,7 +85,7 @@
             
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="./doctor.png" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. Jessica Kim</h3>
@@ -95,7 +95,7 @@
             
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="./doctor.png" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. Thomas Brown</h3>
@@ -105,7 +105,7 @@
             
             <div class="doctor-card">
                 <div class="doctor-image">
-                    <img src="./doctor.png" alt="Doctor profile">
+                    <img src="${pageContext.request.contextPath}/images/doctorimg.jpg" alt="Doctor profile">
                 </div>
                 <div class="doctor-info">
                     <h3>Dr. Olivia Martinez</h3>
@@ -127,7 +127,7 @@
                 </div>
             </div>
             <div class="healthcare-section-image">
-                <img src="./photo1.jpg" alt="">
+                <img src="${pageContext.request.contextPath}/images/indeximg.jpg" alt="">
             </div>
         </div>
     </section>

@@ -200,7 +200,7 @@
                 <ul class="nav-list">
 
                     <li>
-                        <button class="dropdown-btn">
+                        <button class="dropdown-btn" onclick="window.location.href='CustomerDashboard'">
                             <div class="btn-flex">
                                 <span><i class="fa-solid fa-house"></i></span> Dashboard
                             </div>
@@ -210,7 +210,7 @@
                     <%-- Book an appointment --%>
 
                     <li>
-                        <button class="dropdown-btn">
+                        <button class="dropdown-btn" onclick="window.location.href='CustomerBookAppointment'">
                             <div class="btn-flex">
                                 <span><i class="fa-solid fa-user-doctor"></i></span> Book an Appointment
                             </div>
@@ -225,7 +225,7 @@
                             </div>
                         </button>
                         <ul class="dropdown-content">
-                            <li><a href="#">View Appointments</a></li>
+                            <li><a href="AppointmentList">View Appointments</a></li>
                             <li><a href="#">Update Appointments</a></li>
                         </ul>
                     </li>
@@ -239,7 +239,7 @@
                         </button>
                         <ul class="dropdown-content">
                             <li><a href="UserEditProfile">Edit Profile</a></li>
-                            <li><a href="#">Settings</a></li>
+                            <li><a href="ChangePassword">Settings</a></li>
                         </ul>
                     </li>
 

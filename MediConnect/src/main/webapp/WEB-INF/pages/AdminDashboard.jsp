@@ -36,7 +36,7 @@
 		            <p>Here you can manage the system.</p>
 		          </div>
 		          <div class="right">
-		            <img src="${pageContext.request.contextPath}/images/profile.jpg" alt="" width="200px" />
+		            <img src="${pageContext.request.contextPath}/images/dashboardimg.jpg" alt="" width="200px" />
 		          </div>
 		        </div>
 		

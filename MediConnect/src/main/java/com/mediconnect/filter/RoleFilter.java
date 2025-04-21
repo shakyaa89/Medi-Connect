@@ -45,10 +45,11 @@ public class RoleFilter extends HttpFilter implements Filter {
         
         if (uri.endsWith("index") ||
                 uri.endsWith("login") ||
+                uri.endsWith("AboutUs") ||
+                uri.endsWith("ContactUs") ||
                 uri.endsWith("/") ||
                 uri.endsWith("AccessDenied") ||
-                uri.endsWith("register") ||
-                uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/")) {
+                uri.endsWith("register") || uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".png") || uri.endsWith(".jpg")) {
                 chain.doFilter(request, response);
                 return;
             }

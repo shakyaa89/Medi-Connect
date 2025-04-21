@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Montserrat", sans-serif;
+}
+
+body{
+    background-color: #f6f6f6;
+}
+
+.contactus-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fefefe;
+  gap: 40px;
+  padding: 100px 0;
+}
+
+.contactus-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactus-form {
+  background-color: white;
+  padding: 60px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-row {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.form-column {
+  display: flex;
+  flex-direction: column;
+}
+form input,
+select {
+  border-radius: 12px;
+  height: 45px;
+  width: 200px;
+  border: 0px;
+  padding: 0px 20px;
+  background-color: #f0f4f9;
+}
+.register-form label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.message-box {
+  background-color: #f0f4f9;
+  border-radius: 12px;
+  border: none;
+  width: 460px;
+  padding: 20px;
+  font-size: 16px;
+  color: #333;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttons button {
+  background-color: #0057d9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  width: 200px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: 600;
+}
+
+
