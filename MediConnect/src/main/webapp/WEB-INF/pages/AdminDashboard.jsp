@@ -16,7 +16,6 @@
 		<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admindashboard.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ErrorMessage.css"/>
 		<link
 		      rel="stylesheet"
 		      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -26,25 +25,6 @@
 		<body>
 		<jsp:include page="header.jsp"/>
 		
-		
-		<c:choose>
-		    <c:when test="${empty currentUser}">
-			<div class="error-message">
-				<h2>Access Denied</h2>
-		        <p>You do not have permission to access the admin dashboard.</p>
-		        <p><a href="login">You are not logged in!!</a></p>
-			</div>
-		    </c:when>
-		
-		    <c:when test="${currentRole != 'Admin'}">
-		        <div class="error-message">
-				<h2>Access Denied</h2>
-		        <p>You do not have permission to access the admin dashboard.</p>
-		        <p><a href="index">You are not an admin!!</a></p>
-			</div>
-		    </c:when>
-		    
-		     <c:otherwise>
 		
 		<section class="main-content">
 		      <jsp:include page="leftNavigation.jsp"/>
@@ -107,10 +87,6 @@
 		        </div>
 		      </div>
 		    </section>
-		    </c:otherwise>
-		</c:choose>
-		
-		
 		    
 		</body>
 		</html>
