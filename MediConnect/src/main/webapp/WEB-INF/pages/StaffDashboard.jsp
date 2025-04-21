@@ -22,12 +22,11 @@
 		<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/CustomerDashboard.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ErrorMessage.css"/>
 		<link
 		      rel="stylesheet"
 		      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 		    />
-		<title>MediConnect - Admin</title>
+		<title>MediConnect - Staff</title>
 		</head>
 		<body>
 		<jsp:include page="header.jsp"/>
@@ -38,8 +37,8 @@
 		      <div class="right-content">
         <div class="top-div">
           <div class="left">
-            <h1>Welcome to Customer Dashboard</h1>
-            <p>Here you can manage your profile.</p>
+            <h1>Welcome to Staff Dashboard</h1>
+            <p>Here you can manage your profile and appointments.</p>
           </div>
           <div class="right">
             <img src="${pageContext.request.contextPath}/images/profile.jpg" alt="" width="200px" />
@@ -63,7 +62,7 @@
               </div>
             </div>
             <div class="buttonsofwelcome">
-              <button class="edit">Edit Profile</button>
+              <button class="edit" onclick="window.location.href='UserEditProfile'">Edit Profile</button>
               <button class="change" onclick="window.location.href='ChangePassword'">Change password</button>
             </div>
           </div>
@@ -83,6 +82,7 @@
         </div>
       </div>
 		    </section>
+		    
 		</body>
 		</html>
   

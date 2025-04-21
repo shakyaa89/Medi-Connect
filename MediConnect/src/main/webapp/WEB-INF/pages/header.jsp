@@ -56,7 +56,7 @@
               </c:when>
               
               <c:when test="${currentRole == 'Staff'}">
-              	<li><a href="AdminDashboard" class="${dashboardHide }">${currentUser }</a></li>
+              	<li><a href="StaffDashboard" class="${dashboardHide }">${currentUser }</a></li>
               </c:when>
               
               <c:otherwise>

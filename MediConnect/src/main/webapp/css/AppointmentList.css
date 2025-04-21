@@ -6,6 +6,7 @@
   padding: 0px;
   margin: 0px;
   font-family: "Montserrat", sans-serif;
+  box-sizing: inherit;
 }
 
 body{

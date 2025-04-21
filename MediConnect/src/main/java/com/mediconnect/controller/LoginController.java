@@ -75,7 +75,10 @@ public class LoginController extends HttpServlet {
 				redirectionUtil.redirectToPage(request, response, "AdminDashboard");
 			}else if(userRole.equals("Customer")) {
 				CookiesUtil.addCookie(response, "role", "Customer", 5 * 30);
-				redirectionUtil.redirectToPage(request, response, "index");
+				redirectionUtil.redirectToPage(request, response, "CustomerDashboard");
+			}else if(userRole.equals("Staff")) {
+				CookiesUtil.addCookie(response, "role", "Staff", 5 * 30);
+				redirectionUtil.redirectToPage(request, response, "StaffDashboard");
 			}
 		}else {
 			handleLoginFailure(request, response, loginStatus);

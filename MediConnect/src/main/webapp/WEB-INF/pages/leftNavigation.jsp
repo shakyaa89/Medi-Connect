@@ -49,8 +49,8 @@
                             </div>
                         </button>
                         <ul class="dropdown-content">
-                            <li><a href="#">All Doctors</a></li>
-                            <li><a href="#">Add Doctor</a></li>
+                            <li><a href="AdminDoctorList">All Doctors</a></li>
+                            <li><a href="AdminAddDoctor">Add Doctor</a></li>
                         </ul>
                     </li>
 
@@ -62,7 +62,7 @@
                             </div>
                         </button>
                         <ul class="dropdown-content">
-                            <li><a href="#">All Patients</a></li>
+                            <li><a href="CustomerList">All Patients</a></li>
                         </ul>
                     </li>
 
@@ -74,8 +74,8 @@
                             </div>
                         </button>
                         <ul class="dropdown-content">
-                            <li><a href="#">All Staff</a></li>
-                            <li><a href="#">Add Staff</a></li>
+                            <li><a href="AdminStaffList">All Staff</a></li>
+                            <li><a href="AdminAddStaff">Add Staff</a></li>
                         </ul>
                     </li>
 
@@ -87,7 +87,7 @@
                             </div>
                         </button>
                         <ul class="dropdown-content">
-                            <li><a href="#">View Appointments</a></li>
+                            <li><a href="AppointmentList">View Appointments</a></li>
                             <li><a href="#">History</a></li>
                         </ul>
                     </li>
@@ -113,8 +113,71 @@
                             </div>
                         </button>
                         <ul class="dropdown-content">
-                            <li><a href="UserEditProfile">Profile</a></li>
-                            <li><a href="#">Settings</a></li>
+                            <li><a href="UserEditProfile">Edit Profile</a></li>
+                            <li><a href="ChangePassword">Settings</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </c:when>
+    
+    <c:when test="${currentRole == 'Staff'}">
+        <div class="container">
+            <div class="sidebar">
+                <%-- Image and Name section --%>
+                <div class="profile-section">
+                    <img src="${pageContext.request.contextPath}/images/profile.jpg" alt="Profile Picture" />
+                    <p class="profile-name">${fullName}</p>
+                </div> 
+
+                <%-- Navigation menu for Admin --%>
+                <ul class="nav-list">
+
+                    <li>
+                        <button class="dropdown-btn" onclick="window.location.href='StaffDashboard'">
+                            <div class="btn-flex">
+                                <span><i class="fa-solid fa-house"></i></span> Dashboard
+                            </div>
+                        </button>
+                    </li>
+
+                    <%-- Patients --%>
+                    <li>
+                        <button class="dropdown-btn">
+                            <div class="btn-flex">
+                                <span><i class="fa-solid fa-hospital-user"></i></span> Patients
+                            </div>
+                        </button>
+                        <ul class="dropdown-content">
+                            <li><a href="CustomerList">All Patients</a></li>
+                        </ul>
+                    </li>
+
+                    <%-- Bookings --%>
+                    <li>
+                        <button class="dropdown-btn">
+                            <div class="btn-flex">
+                                <span><i class="fa-solid fa-bookmark"></i></span> Bookings
+                            </div>
+                        </button>
+                        <ul class="dropdown-content">
+                            <li><a href="AppointmentList">View Appointments</a></li>
+                            <li><a href="#">History</a></li>
+                        </ul>
+                    </li>
+
+                    <%-- Account --%>
+                    <li>
+                        <button class="dropdown-btn">
+                            <div class="btn-flex">
+                                <span><i class="fa-solid fa-gear"></i></span> Account
+                            </div>
+                        </button>
+                        <ul class="dropdown-content">
+                            <li><a href="UserEditProfile">Edit Profile</a></li>
+                            <li><a href="ChangePassword">Settings</a></li>
                         </ul>
                     </li>
 
@@ -175,8 +238,8 @@
                             </div>
                         </button>
                         <ul class="dropdown-content">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="UserEditProfile">Settings</a></li>
+                            <li><a href="UserEditProfile">Edit Profile</a></li>
+                            <li><a href="#">Settings</a></li>
                         </ul>
                     </li>
 

@@ -57,9 +57,22 @@ public class RoleFilter extends HttpFilter implements Filter {
         	res.sendRedirect(req.getContextPath() + "/AccessDenied");
         	return;
         }
+        
+        if (uri.contains("AdminStaffList") && "Admin".equals(role)) {
+        	chain.doFilter(request, response);
+            return;
+        }else if (uri.contains("AdminAddStaff") && "Admin".equals(role)) {
+        	chain.doFilter(request, response);
+            return;
+        }
+        
+        if (uri.contains("CustomerList")) {
+            if ("Admin".equals(role) || ("Staff".equals(role))) {
+            	chain.doFilter(request, response);
+                return;
+            }
+        }
 
-
-        // Map URIs to role access (basic keyword-based mapping)
         if (uri.contains("Admin") && !"Admin".equals(role)) {
             res.sendRedirect(req.getContextPath() + "/AccessDenied");
             return;
