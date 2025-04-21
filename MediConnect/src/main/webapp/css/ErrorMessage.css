@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.error-message{
+	margin-top: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 20px;
+	padding: 30px;
+}
+
+.error-message a{
+	padding: 10px 20px;
+	color: black;
+	border: 1px solid black;
+}

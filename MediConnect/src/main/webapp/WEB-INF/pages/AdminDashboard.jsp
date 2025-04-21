@@ -24,6 +24,8 @@
 		<title>MediConnect - Admin</title>
 		</head>
 		<body>
+		<jsp:include page="header.jsp"/>
+		
 		
 		<c:choose>
 		    <c:when test="${empty currentUser}">
@@ -43,7 +45,6 @@
 		    </c:when>
 		    
 		     <c:otherwise>
-		        <jsp:include page="header.jsp"/>
 		
 		<section class="main-content">
 		      <jsp:include page="leftNavigation.jsp"/>

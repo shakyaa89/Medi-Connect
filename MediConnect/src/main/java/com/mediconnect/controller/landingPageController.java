@@ -27,7 +27,7 @@ public class landingPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/pages/CustomerDashboard.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
 	}
 
 	/**
