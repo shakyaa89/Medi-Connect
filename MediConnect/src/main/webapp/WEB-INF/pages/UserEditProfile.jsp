@@ -29,7 +29,6 @@
 <body>
 <%-- Including header --%>
 <jsp:include page="header.jsp" />
-    <%-- Display Main Content if the user is logged in --%>
         <section class="main-content">
             <jsp:include page="leftNavigation.jsp" />
 

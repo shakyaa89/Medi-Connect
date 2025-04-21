@@ -22,18 +22,6 @@
 <body>
 <%-- Including header --%>
 <jsp:include page="header.jsp" />
-<%-- Checking if user is logged in or not --%>
-<c:choose>
-    <c:when test="${empty currentUser}">
-        <%-- Error message if user is not logged in --%>
-        <div class="error-message">
-            <h2>Access Denied</h2>
-            <p>You do not have permission to access this page.</p>
-            <p><a href="login">You are not logged in!!</a></p>
-        </div>
-    </c:when>
-
-    <c:otherwise>
     <%-- Display Main Content if the user is logged in --%>
         <section class="main-content">
             <jsp:include page="leftNavigation.jsp" />
@@ -57,8 +45,5 @@
         </div>
       </div>
         </section>
-    </c:otherwise>
-</c:choose>
-
 </body>
 </html>

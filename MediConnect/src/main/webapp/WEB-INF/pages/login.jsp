@@ -18,18 +18,6 @@
 <body>
 <%-- Including the header --%>
 <jsp:include page="header.jsp" />
-<%-- Checking if the user is logged in or not --%>
-<c:choose>
-    <%-- If the user is logged in, show a message and redirect button --%>
-    <c:when test="${not empty currentUser}">
-        <div class="error-message">
-            <h2>You are already logged in!</h2>
-            <p><a href="index">Go back to home page!!</a></p>
-        </div>
-    </c:when>
-
-    <%-- If the user is not logged in, show the Login form --%>
-    <c:otherwise>
         <section class="main-container">
             <div>
                 <form action="" method="post" class="form-container">
@@ -60,8 +48,5 @@
 
         <%-- Including the footer --%>
         <jsp:include page="footer.jsp" />
-    </c:otherwise>
-</c:choose>
-
 </body>
 </html>
