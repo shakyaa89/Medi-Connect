@@ -93,18 +93,4 @@ td {
         background-color: #f0f4f9;
 }
 
-.error-message{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	gap: 20px;
-	padding: 30px;
-}
-
-.error-message a{
-	padding: 10px 20px;
-	color: black;
-	border: 1px solid black;
-}
 

@@ -14,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/AdminAppointmentList.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ErrorMessage.css"/>
 <title>MediConnect - Admin</title>
 </head>
 <body>

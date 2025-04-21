@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <title>MediConnect</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ErrorMessage.css"/>
 </head>
 <body>
 <%-- Including the header --%>
