@@ -49,6 +49,11 @@ body{
     gap: 90px;
     margin-bottom: 20px;
 }
+
+.image-row{
+	width: 100%;
+}
+
 .form-column{
     display: flex;
     flex-direction: column;

@@ -6,11 +6,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+
 import java.io.IOException;
 
 import com.mediconnect.model.UserModel;
 import com.mediconnect.service.RegisterService;
 import com.mediconnect.util.ExtractionUtil;
+import com.mediconnect.util.ImageUtil;
 import com.mediconnect.util.RedirectionUtil;
 
 /**
@@ -26,11 +29,13 @@ public class RegisterController extends HttpServlet {
 	private RegisterService registerService;
 	private RedirectionUtil redirectionUtil;
 	private ExtractionUtil extractionUtil;
+	private ImageUtil imageUtil;
 	
 	public void init() throws ServletException {
 		this.registerService = new RegisterService();
 		this.redirectionUtil = new RedirectionUtil();
 		this.extractionUtil = new ExtractionUtil();
+		this.imageUtil = new ImageUtil();
 	}
        
     /**
@@ -54,15 +59,34 @@ public class RegisterController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		UserModel userModel = extractionUtil.extractUserModelRegister(request, response);
-		Boolean isAdded = registerService.addUser(userModel);
-		
-		if(isAdded == null) {
-			System.out.println("Error adding");
-		}else if(isAdded) {
-			redirectionUtil.redirectToPage(request, response, "login");
-			return;
+		try {
+			UserModel userModel = extractionUtil.extractUserModelRegister(request, response);
+			Boolean isAdded = registerService.addUser(userModel);
+			
+			if(isAdded == null) {
+				System.out.println("Error adding");
+			}else if(isAdded) {
+				try {
+					if (extractionUtil.uploadImage(request)) {
+						redirectionUtil.redirectToPage(request, response, "login");
+						return;
+					} else {
+						System.out.println("Error adding image");
+					}
+				} catch (IOException | ServletException e) {
+					System.out.println("Error adding");
+					e.printStackTrace(); 
+				}
+				
+			} else {
+				System.out.println("Error adding");
+			}
+		} catch (Exception e) {
+			System.out.println("Error Registering!");
+			e.printStackTrace();
 		}
     }
+	
+	
 
 }

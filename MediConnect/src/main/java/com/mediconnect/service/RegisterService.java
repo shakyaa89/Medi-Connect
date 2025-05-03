@@ -28,7 +28,7 @@ public class RegisterService {
 			return null;
 		}
 		
-		String insertQuery = "INSERT INTO users (user_id, user_first_name, user_last_name, user_username, user_email, user_phonenumber, user_gender, user_dob, user_location, user_password, user_role) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String insertQuery = "INSERT INTO users (user_id, user_first_name, user_last_name, user_username, user_email, user_phonenumber, user_gender, user_dob, user_location, user_password, user_role, user_image) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try{
 			PreparedStatement insertStmt = dbConnection.prepareStatement(insertQuery);
@@ -42,6 +42,7 @@ public class RegisterService {
 			insertStmt.setString(8, UserModel.getUser_location());
 			insertStmt.setString(9, UserModel.getUser_password());
 			insertStmt.setString(10, UserModel.getUser_role());
+			insertStmt.setString(11, UserModel.getUser_image());
 			
 			return insertStmt.executeUpdate() > 0;
 			

@@ -23,7 +23,7 @@
                 </div>
 
                 <%-- Registration form --%>
-                <form class="form-section" action="register" method="post">
+                <form class="form-section" action="register" method="post" enctype="multipart/form-data">
                     <div>
 
                         <%-- First row --%>
@@ -87,6 +87,12 @@
                             <div class="form-column">
                                 <label for="retypePassword">Retype Password</label>
                                 <input type="password" id="retypePassword" name="retypePassword" required>
+                            </div>
+                        </div>
+                        <div class="form-row image-row">
+                            <div class="form-column">
+                                <label for="image">Profile Picture</label>
+                                <input type="file" id="image" name="image" required>
                             </div>
                         </div>
 

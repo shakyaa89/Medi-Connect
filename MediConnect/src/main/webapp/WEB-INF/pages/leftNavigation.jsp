@@ -8,6 +8,7 @@
 <c:set var="firstName" value="${userSession.getAttribute('firstName')}" />
 <c:set var="lastName" value="${userSession.getAttribute('lastName')}" />
 <c:set var="fullName" value="${firstName } ${lastName }" />
+<c:set var="image" value="${userSession.getAttribute('image')}" />
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,7 @@
             <div class="sidebar">
                 <%-- Image and Name section --%>
                 <div class="profile-section">
-                    <img src="${pageContext.request.contextPath}/images/profile.jpg" alt="Profile Picture" />
+                    <img src="${pageContext.request.contextPath}/images/Profiles/${image}" alt="Profile Picture" />
                     <p class="profile-name">${fullName}</p>
                 </div> 
 
@@ -128,7 +129,7 @@
             <div class="sidebar">
                 <%-- Image and Name section --%>
                 <div class="profile-section">
-                    <img src="${pageContext.request.contextPath}/images/profile.jpg" alt="Profile Picture" />
+                    <img src="${pageContext.request.contextPath}/images/Profiles/${image}" alt="${image}" />
                     <p class="profile-name">${fullName}</p>
                 </div> 
 
@@ -192,7 +193,7 @@
             <div class="sidebar">
                 <%-- Profile Image and name --%>
                 <div class="profile-section">
-                    <img src="${pageContext.request.contextPath}/images/profile.jpg" alt="Profile Picture" />
+                    <img src="${pageContext.request.contextPath}/images/Profiles/${image }" alt="${image }" />
                     <p class="profile-name">${fullName}</p>
                 </div>
 
