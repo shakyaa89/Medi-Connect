@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import com.mediconnect.model.UserModel;
+import com.mediconnect.model.DoctorModel;
+import com.mediconnect.model.DoctorAvailabilityModel;
 import com.mediconnect.service.UpdateService;
 
 import jakarta.servlet.ServletException;
@@ -77,5 +79,46 @@ public class ExtractionUtil {
 	public boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
 		Part image = req.getPart("image");
 		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Profiles");
+	}
+	
+	public boolean uploadDoctorImage(HttpServletRequest req) throws IOException, ServletException {
+		Part image = req.getPart("doctor-image");
+		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Doctor Profiles");
+	}
+	
+	public DoctorModel extractDoctorModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String name = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String username = request.getParameter("username");
+		String location = request.getParameter("location");
+		String email = request.getParameter("email");
+		String specialization = request.getParameter("specialization");
+		String experience = request.getParameter("experience");
+		String phoneNum = request.getParameter("phoneNumber");
+		String gender = request.getParameter("gender");
+		
+		Part image = request.getPart("doctor-image");
+		String imageUrl = imageUtil.getImageNameFromPart(image);
+		
+		return new DoctorModel(name, lastName, email, phoneNum, location, gender, specialization, experience, imageUrl);
+	}
+	
+	public DoctorAvailabilityModel extractDoctorAvailabilityModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String startTime = request.getParameter("start-time");
+		String endTime = request.getParameter("end-time");
+		String weekDays = request.getParameter("WeekDays");
+		String weekEnd = request.getParameter("WeekEnd");
+		
+		String availableDays = "";
+
+		if (weekDays != null && weekEnd != null) {
+		    availableDays = "Week Days, Week End";
+		} else if (weekDays != null) {
+		    availableDays = "Week Days";
+		} else if (weekEnd != null) {
+		    availableDays = "Week End";
+		}
+		
+		return new DoctorAvailabilityModel(startTime, endTime, availableDays);
 	}
 }

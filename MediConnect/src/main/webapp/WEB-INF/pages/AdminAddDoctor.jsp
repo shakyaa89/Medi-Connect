@@ -36,7 +36,7 @@
                     <h3>Personal Details</h3>
                 </div>
                 <div class="add-doctor-form-container">
-                    <form action="">
+                    <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-column">
                                 <label for="firstName">First Name</label> 
@@ -71,9 +71,9 @@
                             <div class="form-column">
                                 <label for="gender">Gender</label> 
                                 <select name="gender" id="gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="others">Others</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others">Others</option>
                               </select>
                             </div>
                         </div>
@@ -89,27 +89,18 @@
                             <div class="form-column">
                                 <label for="available-days">Available Days</label>
                                 <div class="days">
-                                    <input type="checkbox" id="mon" name="days" value="Mon" checked>
-                                    <label class="day-label" for="mon">Mon</label>
+                                    <input type="checkbox" id="WeekDays" name="WeekDays" value="Week Days" checked>
+                                    <label class="day-label" for="WeekDays">Week Days</label>
                     
-                                    <input type="checkbox" id="tue" name="days" value="Tue" checked>
-                                    <label class="day-label" for="tue">Tue</label>
-                    
-                                    <input type="checkbox" id="wed" name="days" value="Wed" checked>
-                                    <label class="day-label" for="wed">Wed</label>
-                    
-                                    <input type="checkbox" id="thu" name="days" value="Thu" checked>
-                                    <label class="day-label" for="thu">Thu</label>
-                    
-                                    <input type="checkbox" id="fri" name="days" value="Fri" checked>
-                                    <label class="day-label" for="fri">Fri</label>
-                    
-                                    <input type="checkbox" id="sat" name="days" value="Sat" checked>
-                                    <label class="day-label" for="sat">Sat</label>
-                    
-                                    <input type="checkbox" id="sun" name="days" value="Sun" checked>
-                                    <label class="day-label" for="sun">Sun</label>
+                                    <input type="checkbox" id="WeekEnd" name="WeekEnd" value="Week End">
+                                    <label class="day-label" for="WeekEnd">Week End</label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-column">
+                                <label for="doctor-image">Picture</label>
+                                <input type="file" id="doctor-image" name="doctor-image" required>
                             </div>
                         </div>
                         <div class="form-row">
