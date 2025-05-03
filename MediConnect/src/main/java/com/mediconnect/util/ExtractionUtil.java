@@ -86,6 +86,11 @@ public class ExtractionUtil {
 		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Doctor Profiles");
 	}
 	
+	public boolean uploadStaffImage(HttpServletRequest req) throws IOException, ServletException {
+		Part image = req.getPart("staff-image");
+		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Staff Profiles");
+	}
+	
 	public DoctorModel extractDoctorModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String name = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -120,5 +125,30 @@ public class ExtractionUtil {
 		}
 		
 		return new DoctorAvailabilityModel(startTime, endTime, availableDays);
+	}
+	
+	public UserModel extractStaffModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String name = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String username = request.getParameter("username");
+		String location = request.getParameter("location");
+		String email = request.getParameter("email");
+		LocalDate birthday = LocalDate.parse(request.getParameter("date-of-birth"));
+		String phoneNum = request.getParameter("phoneNumber");
+		String gender = request.getParameter("gender");
+		
+		String pass = request.getParameter("password");
+		String repass = request.getParameter("retype-password");
+		
+		Part image = request.getPart("staff-image");
+		String imageUrl = imageUtil.getImageNameFromPart(image);
+		
+		if(!validationUtil.isValidPassword(pass, repass) || !validationUtil.isPasswordSame(pass, repass)) {
+			System.out.println("error password");
+		}
+
+		pass = PasswordEncryptionUtil.encrypt(pass);
+		
+		return new UserModel(null, name, lastName, username, email, phoneNum, gender, birthday, location, pass, "Staff", imageUrl);
 	}
 }

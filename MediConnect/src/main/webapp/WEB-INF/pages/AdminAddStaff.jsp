@@ -37,7 +37,7 @@
                     <h3>Personal Details</h3>
                 </div>
                 <div class="add-staff-form-container">
-                    <form action="">
+                    <form action="${contextPath}/AdminAddStaff" method="post" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-column">
                                 <label for="firstName">First Name</label> 
@@ -70,19 +70,15 @@
                                 <input type="date" id="date-of-birth" name="date-of-birth" required>
                             </div>
                             <div class="form-column">
-                                <label for="role">Role</label> 
-                                <input type="text" id="rolel" name="role" required>
-                            </div>
-                            <div class="form-column">
                                 <label for="email">Email</label> 
                                 <input type="email" id="email" name="email" required>
                             </div>
-                        </div>
-                        <div class="form-row">
                             <div class="form-column">
                                 <label for="phoneNumber">Phone Number</label> 
                                 <input type="tel" id="phoneNumber" name="phoneNumber" required>
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-column">
                                 <label for="password">Password</label> 
                                 <input type="password" id="password" name="password" required>
@@ -90,6 +86,10 @@
                             <div class="form-column">
                                 <label for="retype-password">Retype Password</label> 
                                 <input type="password" id="retype-password" name="retype-password" required>
+                            </div>
+                            <div class="form-column">
+                                <label for="staff-image">Profile Picture</label>
+                                <input type="file" id="staff-image" name="staff-image" required>
                             </div>
                         </div>
                         <div class="form-row">
