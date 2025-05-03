@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,10 +42,9 @@
                   required
                 >
                   <option value="" disabled selected>Select a Doctor</option>
-                  <option value="general">General Medicine</option>
-                  <option value="pediatrics">Pediatrics</option>
-                  <option value="cardiology">Cardiology</option>
-                  <option value="dermatology">Dermatology</option>
+                  <c:forEach var="doctor" items="${doctorList }">
+                  	<option value="${doctor.doctorSpecialization }">Dr. ${doctor.doctorFirstName } ${doctor.doctorLastName } (${doctor.doctorSpecialization})</option>
+	              </c:forEach>
                 </select>
               </div>
             </div>

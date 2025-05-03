@@ -52,14 +52,17 @@ public class LoginController extends HttpServlet {
 		
 		UserModel userModel = extractionUtil.extractUserModelLogin(request, response);
 		Boolean loginStatus = loginService.loginUser(userModel);
-		UserModel userModelDatabase = loginService.getUserObjectFromDatabase(username);
-		String userRole = userModelDatabase.getUser_role();
+		
 		
 		if(loginStatus != null && loginStatus) {
+			UserModel userModelDatabase = loginService.getUserObjectFromDatabase(username);
+			String userRole = userModelDatabase.getUser_role();
+			
 			if(userModelDatabase == null || userRole == null) {
 				System.out.println("User Object is null");
 				return;
 			}
+			
 			SessionUtil.setAttribute(request, "username", userModelDatabase.getUser_username());
 			SessionUtil.setAttribute(request, "role", userRole);
 			SessionUtil.setAttribute(request, "firstName", userModelDatabase.getUser_first_name());

@@ -27,6 +27,47 @@ public class DashboardService {
 		}
 	}
 	
+	public List<UserModel> getUserList(){
+		if(DbConnection == null) {
+			System.out.println("Database not connected!");
+			return null;
+		}
+		
+		List<UserModel> userList = new ArrayList<UserModel>();
+		
+		String fetchDoctorQuery = "SELECT * FROM users WHERE user_role = 'Customer'";
+		
+		try {
+			PreparedStatement fetchStmt = DbConnection.prepareStatement(fetchDoctorQuery);
+			
+			ResultSet results = fetchStmt.executeQuery();
+			
+			while(results.next()) {
+				Integer userId = results.getInt("user_id");
+				String userFirstName = results.getString("user_first_name");
+				String userLastName = results.getString("user_last_name");
+				String userUsername = results.getString("user_username");
+				String userEmail = results.getString("user_email");
+				String userPhoneNumber = results.getString("user_phonenumber");
+				String userGender = results.getString("user_gender");
+				LocalDate userDOB = LocalDate.parse(results.getString("user_dob"));
+				String userAddress = results.getString("user_location");
+				
+				
+				UserModel userObj = new UserModel(userId, userFirstName, userLastName, userUsername, userEmail, userPhoneNumber, userGender, userDOB, userAddress);
+				
+				userList.add(userObj);
+			}
+
+			return userList;
+			
+		}catch(SQLException e) {
+			System.out.println("Error creating user list!");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public List<DoctorModel> getDoctorList(){
 		if(DbConnection == null) {
 			System.out.println("Database not connected!");
