@@ -21,6 +21,11 @@ import java.io.IOException;
 public class RoleFilter extends HttpFilter implements Filter {
        
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * @see HttpFilter#HttpFilter()
      */
     public RoleFilter() {

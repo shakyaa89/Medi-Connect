@@ -53,40 +53,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
-                        <tr>
-                            <td>101</td>
-                            <td>Emily Watson</td>
-                            <td>ewatson</td>
-                            <td>Female</td>
-                            <td>Brooklyn, NY</td>
-                            <td>1988-05-14</td>
-                            <td>emily.watson@example.com</td>
-                            <td>+1 555-1122</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>102</td>
-                            <td>John Smith</td>
-                            <td>jsmith</td>
-                            <td>Male</td>
-                            <td>Queens, NY</td>
-                            <td>1990-08-22</td>
-                            <td>john.smith@example.com</td>
-                            <td>+1 555-3344</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>103</td>
-                            <td>Linda Lee</td>
-                            <td>llee</td>
-                            <td>Female</td>
-                            <td>Bronx, NY</td>
-                            <td>1992-03-18</td>
-                            <td>linda.lee@example.com</td>
-                            <td>+1 555-5566</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
+                    	<c:forEach var="staff" items="${staffList}">
+		                    <tr>
+		                        <td>${staff.user_id}</td>
+		                        <td>${staff.user_first_name} ${staff.user_last_name }</td>
+		                        <td>${staff.user_username}</td>
+		                        <td>${staff.user_gender}</td>
+		                        <td>${staff.user_location}</td>
+		                        <td>${staff.user_dob}</td>
+		                        <td>${staff.user_email}</td>
+		                        <td>${staff.user_phonenumber}</td>
+								<td>
+									<form>
+										<input type="hidden" name="action" value="update"/>
+										<input type="hidden" name="staffId" value="${staff.user_id}"/>
+										<button class="add-btn">Edit Staff</button>
+									</form>
+								</td>
+		                    </tr>
+	                	</c:forEach>
+
                     </tbody>
                 </table>
             </div>

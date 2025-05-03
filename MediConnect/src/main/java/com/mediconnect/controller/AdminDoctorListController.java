@@ -7,18 +7,22 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.mediconnect.service.DashboardService;
+import com.mediconnect.util.SessionUtil;
+
 /**
  * Servlet implementation class AdminDoctorListController
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/AdminDoctorList" })
 public class AdminDoctorListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	DashboardService dashboardService;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public AdminDoctorListController() {
         super();
+        dashboardService = new DashboardService();
         // TODO Auto-generated constructor stub
     }
 
@@ -27,6 +31,8 @@ public class AdminDoctorListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		SessionUtil.setAttribute(request, "doctorList", dashboardService.getDoctorList());
+		
 		request.getRequestDispatcher("/WEB-INF/pages/AdminDoctorList.jsp").forward(request, response);
 	}
 

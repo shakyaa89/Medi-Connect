@@ -8,7 +8,7 @@
 <c:set var="currentUser" value="${userSession.getAttribute('username')}" />
 <c:set var="currentRole" value="${userSession.getAttribute('role')}" />
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:set var="doctorList" value="${userSession.getAttribute('doctorList')}" />
+
 
 <!DOCTYPE html>
 <html>
@@ -47,9 +47,9 @@
                         </tr>
                     </thead>
                     <tbody>
-	                    <c:forEach var="doctor" items="${doctorsList}">
+	                    <c:forEach var="doctor" items="${doctorList}">
 		                    <tr>
-		                        <td>${doctor.doctorId}</td>
+		                        <td>${doctor.doctor_id}</td>
 		                        <td>${doctor.doctorFirstName} ${doctor.doctorLastName }</td>
 		                        <td>${doctor.doctorGender}</td>
 		                        <td>${doctor.doctorSpecialization}</td>
