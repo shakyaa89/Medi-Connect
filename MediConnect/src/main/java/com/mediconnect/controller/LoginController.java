@@ -60,6 +60,7 @@ public class LoginController extends HttpServlet {
 			
 			if(userModelDatabase == null || userRole == null) {
 				System.out.println("User Object is null");
+				redirectionUtil.setMsgAttribute(request, "error", "Error logging in!!");
 				return;
 			}
 			
@@ -73,6 +74,7 @@ public class LoginController extends HttpServlet {
 			SessionUtil.setAttribute(request, "gender", userModelDatabase.getUser_gender());
 			SessionUtil.setAttribute(request, "email", userModelDatabase.getUser_email());
 			SessionUtil.setAttribute(request, "image", userModelDatabase.getUser_image());
+			SessionUtil.setAttribute(request, "userId", userModelDatabase.getUser_id());
 			if(userRole.equals("Admin")) {
 				CookiesUtil.addCookie(response, "role", "Admin", 5 * 30);
 				redirectionUtil.redirectToPage(request, response, "AdminDashboard");
@@ -92,9 +94,9 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 		String errorMessage;
 		if (loginStatus == null) {
-			errorMessage = "Our server is under maintenance. Please try again later!";
+			errorMessage = "Our server is under maintenance. <br> Please try again later!";
 		} else {
-			errorMessage = "User credential mismatch. Please try again!";
+			errorMessage = "User credential mismatch. <br> Please try again!";
 		}
 		request.setAttribute("error", errorMessage);
 		request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);

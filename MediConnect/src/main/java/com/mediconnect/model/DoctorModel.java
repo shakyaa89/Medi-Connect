@@ -43,6 +43,22 @@ public class DoctorModel {
 	}
 	
 	
+	public DoctorModel(Integer doctor_id, String doctorFirstName, String doctorLastName, String doctorEmail,
+			String doctorPhoneNumber, String doctorAddress, String doctorGender, String doctorSpecialization,
+			String doctorExperience, String doctorImage) {
+		super();
+		this.doctor_id = doctor_id;
+		this.doctorFirstName = doctorFirstName;
+		this.doctorLastName = doctorLastName;
+		this.doctorEmail = doctorEmail;
+		this.doctorPhoneNumber = doctorPhoneNumber;
+		this.doctorAddress = doctorAddress;
+		this.doctorGender = doctorGender;
+		this.doctorSpecialization = doctorSpecialization;
+		this.doctorExperience = doctorExperience;
+		this.doctorImage = doctorImage;
+	}
+
 	public String getDoctorImage() {
 		return doctorImage;
 	}

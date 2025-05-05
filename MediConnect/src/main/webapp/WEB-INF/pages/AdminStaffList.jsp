@@ -67,7 +67,7 @@
 									<form>
 										<input type="hidden" name="action" value="update"/>
 										<input type="hidden" name="staffId" value="${staff.user_id}"/>
-										<button class="add-btn">Edit Staff</button>
+										<button class="edit-btn">Edit Staff</button>
 									</form>
 								</td>
 		                    </tr>

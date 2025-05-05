@@ -11,16 +11,16 @@ import com.mediconnect.service.DashboardService;
 import com.mediconnect.util.SessionUtil;
 
 /**
- * Servlet implementation class AdminAppointmentListController
+ * Servlet implementation class CustomerDoctorListController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/AppointmentList" })
-public class AppointmentListController extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/CustomerDoctorList" })
+public class CustomerDoctorListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DashboardService dashboardService;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AppointmentListController() {
+    public CustomerDoctorListController() {
         super();
         dashboardService = new DashboardService();
     }
@@ -29,10 +29,10 @@ public class AppointmentListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		SessionUtil.setAttribute(request, "doctorList", dashboardService.getDoctorList());
 		
-		SessionUtil.setAttribute(request, "appointmentList", dashboardService.getAppointmentListModel());
-		
-		request.getRequestDispatcher("/WEB-INF/pages/AppointmentList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/CustomerDoctorList.jsp").forward(request, response);
 	}
 
 	/**

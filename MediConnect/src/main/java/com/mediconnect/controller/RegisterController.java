@@ -29,13 +29,11 @@ public class RegisterController extends HttpServlet {
 	private RegisterService registerService;
 	private RedirectionUtil redirectionUtil;
 	private ExtractionUtil extractionUtil;
-	private ImageUtil imageUtil;
 	
 	public void init() throws ServletException {
 		this.registerService = new RegisterService();
 		this.redirectionUtil = new RedirectionUtil();
 		this.extractionUtil = new ExtractionUtil();
-		this.imageUtil = new ImageUtil();
 	}
        
     /**
@@ -61,20 +59,28 @@ public class RegisterController extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			UserModel userModel = extractionUtil.extractUserModelRegister(request, response);
+			if(userModel == null) {
+				redirectionUtil.setMsgAttribute(request, "error", "Invalid details entered! <br> Please try again later!");
+				System.out.println("Null User Model");
+				request.getRequestDispatcher("register").forward(request, response);
+				return;
+			}
+			
 			Boolean isAdded = registerService.addUser(userModel);
 			
 			if(isAdded == null) {
-				System.out.println("Error adding");
+				redirectionUtil.setMsgAttribute(request, "error", "Error in our server! <br> Please try again later!");
 			}else if(isAdded) {
+				System.out.println("Here");
 				try {
 					if (extractionUtil.uploadImage(request)) {
 						redirectionUtil.redirectToPage(request, response, "login");
 						return;
 					} else {
-						System.out.println("Error adding image");
+						redirectionUtil.setMsgAttribute(request, "error", "Error adding image <br> Please try again later!");
 					}
 				} catch (IOException | ServletException e) {
-					System.out.println("Error adding");
+					redirectionUtil.setMsgAttribute(request, "error", "Error Registering <br> Please try again later!");
 					e.printStackTrace(); 
 				}
 				
@@ -82,9 +88,11 @@ public class RegisterController extends HttpServlet {
 				System.out.println("Error adding");
 			}
 		} catch (Exception e) {
-			System.out.println("Error Registering!");
+			redirectionUtil.setMsgAttribute(request, "error", "Error Registering <br> Please try again later!");
 			e.printStackTrace();
 		}
+		
+		System.out.println("Here2");
     }
 	
 	

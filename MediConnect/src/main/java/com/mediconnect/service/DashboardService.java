@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mediconnect.config.Dbconfig;
+import com.mediconnect.model.AppointmentListModel;
 import com.mediconnect.model.DoctorModel;
 import com.mediconnect.model.UserModel;
 
@@ -93,7 +94,8 @@ public class DashboardService {
 				String doctorGender = results.getString("doctor_gender");
 				String doctorSpecialization = results.getString("doctor_specialization");
 				String doctorExperience = results.getString("doctor_experience");
-				DoctorModel doctorObj = new DoctorModel(doctorId, doctorFirstName, doctorLastName, doctorEmail, doctorPhoneNumber, doctorAddress, doctorGender, doctorSpecialization, doctorExperience);
+				String doctorImage = results.getString("doctor_image");
+				DoctorModel doctorObj = new DoctorModel(doctorId, doctorFirstName, doctorLastName, doctorEmail, doctorPhoneNumber, doctorAddress, doctorGender, doctorSpecialization, doctorExperience, doctorImage);
 				
 				doctorList.add(doctorObj);
 			}
@@ -135,6 +137,46 @@ public class DashboardService {
 				
 				
 				UserModel userObj = new UserModel(staffId, staffFirstName, staffLastName, staffUsername, staffEmail, staffPhoneNumber, staffGender, staffDOB, staffAddress);
+				
+				userList.add(userObj);
+			}
+
+			return userList;
+			
+		}catch(SQLException e) {
+			System.out.println("Error creating user list!");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<AppointmentListModel> getAppointmentListModel(){
+		if(DbConnection == null) {
+			System.out.println("Database not connected!");
+			return null;
+		}
+		
+		List<AppointmentListModel> userList = new ArrayList<AppointmentListModel>();
+		
+		String fetchAppointmentList = "SELECT ap.appointment_id, u.user_id, u.user_first_name, u.user_last_name, d.doctor_first_name, d.doctor_last_name, ap.appointment_time, ap.appointment_date FROM appointment ap JOIN doctor_user_appointment dua ON ap.appointment_id = dua.appointment_id JOIN users u ON dua.user_id = u.user_id JOIN doctors d ON dua.doctor_id = d.doctor_id;";
+		
+		try {
+			PreparedStatement fetchStmt = DbConnection.prepareStatement(fetchAppointmentList);
+			
+			ResultSet results = fetchStmt.executeQuery();
+			
+			while(results.next()) {
+				int appointmentId = results.getInt("appointment_id");
+				int userId = results.getInt("user_id");
+				String userFirstName = results.getString("user_first_name");
+				String userLastName = results.getString("user_last_name");
+				String doctorFirstName = results.getString("doctor_first_name");
+				String doctorLastName = results.getString("doctor_last_name");
+				String appointmentTime = results.getString("appointment_time");
+				LocalDate appointmentDate = LocalDate.parse(results.getString("appointment_date"));
+				
+				
+				AppointmentListModel userObj = new AppointmentListModel(appointmentId, userId, userFirstName, userLastName, doctorFirstName, doctorLastName, appointmentTime, appointmentDate);
 				
 				userList.add(userObj);
 			}

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import com.mediconnect.model.UserModel;
 import com.mediconnect.model.DoctorModel;
+import com.mediconnect.model.AppointmentModel;
 import com.mediconnect.model.DoctorAvailabilityModel;
 import com.mediconnect.service.UpdateService;
 
@@ -19,11 +20,13 @@ public class ExtractionUtil {
 	private UpdateService updateService;
 	private ValidationUtil validationUtil;
 	private ImageUtil imageUtil;
+	private RedirectionUtil redirectionUtil;
 	
 	public ExtractionUtil() {
 		this.updateService = new UpdateService();
 		this.validationUtil = new ValidationUtil();
 		this.imageUtil = new ImageUtil();
+		this.redirectionUtil = new RedirectionUtil();
 	}
 	
 	public UserModel extractUserModelLogin(HttpServletRequest request, HttpServletResponse response) {
@@ -68,12 +71,15 @@ public class ExtractionUtil {
 		String imageUrl = imageUtil.getImageNameFromPart(image);
 		
 		if(!validationUtil.isValidPassword(pass, repass) || !validationUtil.isPasswordSame(pass, repass)) {
+			redirectionUtil.setMsgAttribute(request, "error", "Invalid Password!!");
 			System.out.println("error password");
+			return null;
+		}else {
+			pass = PasswordEncryptionUtil.encrypt(pass);
+			return new UserModel(null, name, lastName, username, email, phoneNum, gender, birthday, location, pass, "Customer", imageUrl);
 		}
 
-		pass = PasswordEncryptionUtil.encrypt(pass);
 		
-		return new UserModel(null, name, lastName, username, email, phoneNum, gender, birthday, location, pass, "Customer", imageUrl);
 	}
 	
 	public boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
@@ -83,12 +89,12 @@ public class ExtractionUtil {
 	
 	public boolean uploadDoctorImage(HttpServletRequest req) throws IOException, ServletException {
 		Part image = req.getPart("doctor-image");
-		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Doctor Profiles");
+		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "DoctorProfiles");
 	}
 	
 	public boolean uploadStaffImage(HttpServletRequest req) throws IOException, ServletException {
 		Part image = req.getPart("staff-image");
-		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Staff Profiles");
+		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Profiles");
 	}
 	
 	public DoctorModel extractDoctorModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -150,5 +156,14 @@ public class ExtractionUtil {
 		pass = PasswordEncryptionUtil.encrypt(pass);
 		
 		return new UserModel(null, name, lastName, username, email, phoneNum, gender, birthday, location, pass, "Staff", imageUrl);
+	}
+	
+	public AppointmentModel extractAppointmentModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String doctorId = request.getParameter("doctors");
+		LocalDate appointmentDate = LocalDate.parse(request.getParameter("date"));
+		String time = request.getParameter("time");
+		
+		
+		return new AppointmentModel(null, appointmentDate, time, "Confirmed");
 	}
 }

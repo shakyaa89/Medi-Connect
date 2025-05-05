@@ -1,141 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/CustomerDoctorList.css"/>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/CustomerDoctorList.css" />
 <title>MediConnect</title>
 </head>
 <body>
 
-<jsp:include page="header.jsp"/>
+	<jsp:include page="header.jsp" />
 
-<section class="main-content">
-      <jsp:include page="leftNavigation.jsp"/>
+	<section class="main-content">
+		<jsp:include page="leftNavigation.jsp" />
 
-      <div class="list-content">
-        <div class="doctor-container">
-          <div class="doctor-head">
-            <h1>Doctor List</h1>
-            <form action="">
-              <input type="text" placeholder="Search" />
-            </form>
-          </div>
+		<div class="list-content">
+			<div class="doctor-container">
+				<h1>Available Doctors:</h1>
+				<div class="card-container">
+					<c:forEach var="doctor" items="${doctorList}">
+						<div class="card">
+							<img
+								src="${pageContext.request.contextPath}/images/DoctorProfiles/${doctor.doctorImage }"
+								alt="${doctor.doctorImage }">
+							<div class="doctor-name">Dr. ${doctor.doctorFirstName }
+								${doctor.doctorLastName }</div>
+							<div class="specialization">${doctor.doctorSpecialization }</div>
+							<form action="${pageContext.request.contextPath}/CustomerBookAppointment" method="get">
+								<input type="hidden" name="doctorId" value="${doctor.doctor_id}" />
+								<button type="submit" class="book-btn">Book</button>
+							</form>
+							
+						</div>
 
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Doctor Name</th>
-                <th>Email</th>
-                <th>Phone No</th>
-                <th>Location</th>
-                <th>Specialization</th>
-                <th>Gender</th>
-                <th>Experience</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>001</td>
-                <td>Dr. Sarah Ali</td>
-                <td>sarah.ali@example.com</td>
-                <td>+1 555-1234</td>
-                <td>New York</td>
-                <td>Cardiologist</td>
-                <td>Female</td>
-                <td>10 years</td>
-                <td>09:00 AM</td>
-                <td>05:00 PM</td>
-                <td><button class="book-btn">Book</button></td>
-              </tr>
-              <tr>
-                <td>001</td>
-                <td>Dr. Sarah Ali</td>
-                <td>sarah.ali@example.com</td>
-                <td>+1 555-1234</td>
-                <td>New York</td>
-                <td>Cardiologist</td>
-                <td>Female</td>
-                <td>10 years</td>
-                <td>09:00 AM</td>
-                <td>05:00 PM</td>
-                <td><button class="book-btn">Book</button></td>
-              </tr>
-              <tr>
-                <td>001</td>
-                <td>Dr. Sarah Ali</td>
-                <td>sarah.ali@example.com</td>
-                <td>+1 555-1234</td>
-                <td>New York</td>
-                <td>Cardiologist</td>
-                <td>Female</td>
-                <td>10 years</td>
-                <td>09:00 AM</td>
-                <td>05:00 PM</td>
-                <td><button class="book-btn">Book</button></td>
-              </tr>
-              <tr>
-                <td>001</td>
-                <td>Dr. Sarah Ali</td>
-                <td>sarah.ali@example.com</td>
-                <td>+1 555-1234</td>
-                <td>New York</td>
-                <td>Cardiologist</td>
-                <td>Female</td>
-                <td>10 years</td>
-                <td>09:00 AM</td>
-                <td>05:00 PM</td>
-                <td><button class="book-btn">Book</button></td>
-              </tr>
-              <tr>
-                <td>001</td>
-                <td>Dr. Sarah Ali</td>
-                <td>sarah.ali@example.com</td>
-                <td>+1 555-1234</td>
-                <td>New York</td>
-                <td>Cardiologist</td>
-                <td>Female</td>
-                <td>10 years</td>
-                <td>09:00 AM</td>
-                <td>05:00 PM</td>
-                <td><button class="book-btn">Book</button></td>
-              </tr>
-              <tr>
-                <td>001</td>
-                <td>Dr. Sarah Ali</td>
-                <td>sarah.ali@example.com</td>
-                <td>+1 555-1234</td>
-                <td>New York</td>
-                <td>Cardiologist</td>
-                <td>Female</td>
-                <td>10 years</td>
-                <td>09:00 AM</td>
-                <td>05:00 PM</td>
-                <td><button class="book-btn">Book</button></td>
-              </tr>
-              <tr>
-                <td>001</td>
-                <td>Dr. Sarah Ali</td>
-                <td>sarah.ali@example.com</td>
-                <td>+1 555-1234</td>
-                <td>New York</td>
-                <td>Cardiologist</td>
-                <td>Female</td>
-                <td>10 years</td>
-                <td>09:00 AM</td>
-                <td>05:00 PM</td>
-                <td><button class="book-btn">Book</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-    
+					</c:forEach>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
 </body>
 </html>

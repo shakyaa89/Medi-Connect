@@ -1,88 +1,95 @@
 @charset "UTF-8";
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import
+	url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap")
+	;
 
 * {
-  padding: 0px;
-  margin: 0px;
-  font-family: "Montserrat", sans-serif;
+	padding: 0px;
+	margin: 0px;
+	font-family: "Montserrat", sans-serif;
+	box-sizing: inherit;
 }
 
-body{
-    background-color: #f6f6f6;
+body {
+	background-color: #f6f6f6;
 }
 
 .main-content {
-  display: flex;
-  box-sizing: border-box;
+	display: flex;
+	box-sizing: border-box;
 }
 
 .list-content {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  width: 1600px;
-  margin-top: 50px;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: center;
+	width: 1600px;
+	margin-top: 50px;
 }
 
-.doctor-head {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 .doctor-container {
-  width: 1400px;
-  margin: 0 auto;
-  background-color: white;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	width: 1400px;
+	margin: 0 auto;
+	background-color: white;
+	padding: 30px;
+	border-radius: 16px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
+	text-align: left;
+	margin-bottom: 30px;
+	color: #333;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
+.card-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100%;
+	padding: 0 100px 100px 100px;
 }
 
-thead {
-  background-color: #0057d9;
-  color: white;
+.card {
+	width: 22%;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+	padding: 15px;
+	text-align: center;
 }
 
-th,
-td {
-  padding: 14px 20px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.card img {
+	width: 100%;
+	border-radius: 10px 10px 0 0;
+	height: 200px;
+	object-fit: cover;
+}
+
+.doctor-name {
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.specialization {
+	font-size: 14px;
+	color: #777;
+	margin: 5px 0;
 }
 
 .book-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-weight: 600;
-}
-
-.add-btn:hover {
-  background-color: #0056b3;
-}
-.list-content input {
-  border-radius: 12px;
-  height: 35px;
-  width: 200px;
-  border: 0px;
-  padding: 0px 20px;
-  background-color: #f0f4f9;
+	padding: 8px 16px;
+	background-color: #0057d9;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block;
+	margin-top: 10px;
+	border: 1px solid transparent;
+	cursor: pointer;
 }

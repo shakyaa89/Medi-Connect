@@ -27,13 +27,11 @@ public class AdminAddStaffController extends HttpServlet {
 	private AddService addService;
 	private RedirectionUtil redirectionUtil;
 	private ExtractionUtil extractionUtil;
-	private ImageUtil imageUtil;
 	
 	public void init() throws ServletException {
 		this.addService = new AddService();
 		this.redirectionUtil = new RedirectionUtil();
 		this.extractionUtil = new ExtractionUtil();
-		this.imageUtil = new ImageUtil();
 	}
     /**
      * @see HttpServlet#HttpServlet()

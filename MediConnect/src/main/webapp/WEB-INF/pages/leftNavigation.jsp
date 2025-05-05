@@ -211,7 +211,7 @@
                     <%-- Book an appointment --%>
 
                     <li>
-                        <button class="dropdown-btn" onclick="window.location.href='CustomerBookAppointment'">
+                        <button class="dropdown-btn" onclick="window.location.href='CustomerDoctorList'">
                             <div class="btn-flex">
                                 <span><i class="fa-solid fa-user-doctor"></i></span> Book an Appointment
                             </div>
