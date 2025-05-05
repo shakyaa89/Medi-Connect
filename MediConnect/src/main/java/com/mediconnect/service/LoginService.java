@@ -83,8 +83,9 @@ public class LoginService {
 	            String userRole = results.getString("user_role");
 	            String gender = results.getString("user_gender");
 	            String image = results.getString("user_image");
+	            String password = results.getString("user_password");
 
-	            return new UserModel(userId, name, lastName, usernameDb, email, phoneNum, gender, location, userRole, birthday, image);
+	            return new UserModel(userId, name, lastName, usernameDb, email, phoneNum, gender, birthday, location, password, userRole, image);
 	        } else {
 	            return null;
 	        }

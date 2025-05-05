@@ -77,4 +77,28 @@ private Connection dbConnection;
 			return null;
 		}
 	}
+	
+	public Boolean updatePassword(String newPassword, String username) {
+		if(dbConnection == null) {
+			System.out.println("Database not connected!");
+			return null;
+		}
+		
+		String updateQuery = "UPDATE users SET user_password = ? WHERE user_username = ?";
+		
+		try{
+			PreparedStatement insertStmt = dbConnection.prepareStatement(updateQuery);
+			insertStmt.setString(1, newPassword);
+			insertStmt.setString(2, username);
+			
+			return insertStmt.executeUpdate() > 0;
+			
+		}catch(SQLException e) {
+			System.err.println("SQL Error");
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
 }
