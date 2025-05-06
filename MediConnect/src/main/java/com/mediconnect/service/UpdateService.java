@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mediconnect.config.Dbconfig;
+import com.mediconnect.model.DoctorAvailabilityModel;
+import com.mediconnect.model.DoctorModel;
 import com.mediconnect.model.UserModel;
 
 public class UpdateService {
@@ -43,6 +45,51 @@ private Connection dbConnection;
 			insertStmt.setInt(9, userId);
 			
 			return insertStmt.executeUpdate() > 0;
+			
+		}catch(SQLException e) {
+			System.err.println("SQL Error");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Boolean updateDoctor(DoctorModel doctorModel, DoctorAvailabilityModel doctorAvModel, int doctorId) {
+		if(dbConnection == null) {
+			System.err.println("Database not connected!");
+			return null;
+		}
+		
+		String updateDoctorQuery = "UPDATE doctors SET doctor_first_name = ?, doctor_last_name = ?, doctor_email = ?, doctor_phonenumber = ?, doctor_address = ?, doctor_gender = ?, doctor_specialization = ?, doctor_experience = ?, doctor_image = ? WHERE doctor_id = ?";
+		String doctorAvailabilityUpdateQuery = "UPDATE doctor_availability SET start_time = ?, end_time = ?, doctor_available_day = ? WHERE doctor_id = ?";
+		
+		try{
+			PreparedStatement insertStmtDoctor = dbConnection.prepareStatement(updateDoctorQuery);
+			insertStmtDoctor.setString(1, doctorModel.getDoctorFirstName());
+			insertStmtDoctor.setString(2, doctorModel.getDoctorLastName());
+			insertStmtDoctor.setString(3, doctorModel.getDoctorEmail());
+			insertStmtDoctor.setString(4, doctorModel.getDoctorPhoneNumber());
+			insertStmtDoctor.setString(5, doctorModel.getDoctorAddress());
+			insertStmtDoctor.setString(6, doctorModel.getDoctorGender());
+			insertStmtDoctor.setString(7, doctorModel.getDoctorSpecialization());
+			insertStmtDoctor.setString(8, doctorModel.getDoctorExperience());
+			insertStmtDoctor.setString(9, doctorModel.getDoctorImage());
+			insertStmtDoctor.setInt(10, doctorId);
+			
+			int isUpdated = insertStmtDoctor.executeUpdate();
+			
+			if(isUpdated > 0) {
+				PreparedStatement availabilityStmt = dbConnection.prepareStatement(doctorAvailabilityUpdateQuery);
+				availabilityStmt.setString(1, doctorAvModel.getStart_time());
+				availabilityStmt.setString(2, doctorAvModel.getEnd_time());
+				availabilityStmt.setString(3, doctorAvModel.getDoctor_available_day());
+				availabilityStmt.setInt(4, doctorId);
+				
+				return availabilityStmt.executeUpdate() > 0;
+			}else {
+				System.out.println("Cannot add doctor!");
+				return null;
+			}
+			
 			
 		}catch(SQLException e) {
 			System.err.println("SQL Error");

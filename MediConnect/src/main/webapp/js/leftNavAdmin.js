@@ -15,3 +15,16 @@ function clearProfileFields(){
 	            }
 	        });
 }
+
+function clearProfileFieldsDoctor() {
+    const form = document.getElementById("doctorEditForm");
+    form.querySelectorAll("input, select").forEach(field => {
+        if (field.type !== "submit" && field.type !== "button") {
+            if (field.type === "checkbox" || field.type === "radio") {
+                field.checked = false;  // Uncheck checkboxes and radio buttons
+            } else {
+                field.value = "";  // Clear text-based input fields and selects
+            }
+        }
+    });
+}

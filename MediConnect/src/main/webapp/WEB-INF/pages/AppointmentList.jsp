@@ -37,8 +37,10 @@
 					<thead>
 						<tr>
 							<th>Appointment ID</th>
-							<th>Patient ID</th>
-							<th>Patient Name</th>
+							<c:if test="${currentRole == 'Admin' || currentRole == 'Staff' }">
+								<th>Patient ID</th>
+								<th>Patient Name</th>
+							</c:if>
 							<th>Doctor Appointed</th>
 							<th>Appointment Time</th>
 							<th>Appointment Date</th>
@@ -49,6 +51,18 @@
 							<c:when test="${currentRole == 'Customer' }">
 								<c:forEach var="appointment" items="${appointmentList}">
 									<c:if test="${appointment.user_id == userId }">
+										<tr>
+											<td>${appointment.appointment_id }</td>
+											<td>Dr. ${appointment.doctor_first_name }
+												${appointment.doctor_last_name }</td>
+											<td>${appointment.appointment_time }</td>
+											<td>${appointment.appointment_date }</td>
+										</tr>
+									</c:if>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="appointment" items="${appointmentList}">
 									<tr>
 										<td>${appointment.appointment_id }</td>
 										<td>${appointment.user_id }</td>
@@ -58,21 +72,6 @@
 											${appointment.doctor_last_name }</td>
 										<td>${appointment.appointment_time }</td>
 										<td>${appointment.appointment_date }</td>
-									</tr>
-									</c:if>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<c:forEach var="appointment" items="${appointmentList}">
-								<tr>
-									<td>${appointment.appointment_id }</td>
-									<td>${appointment.user_id }</td>
-									<td>${appointment.user_first_name }
-										${appointment.user_last_name }</td>
-									<td>Dr. ${appointment.doctor_first_name }
-										${appointment.doctor_last_name }</td>
-									<td>${appointment.appointment_time }</td>
-									<td>${appointment.appointment_date }</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>

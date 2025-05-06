@@ -89,7 +89,7 @@
                             <%-- Clear and Submit buttons --%>
                             <div class="form-row">
                                 <div class="buttons">
-                                    <button class="form-buttons" type="reset" onclick="clearProfileFields()">Clear</button>
+                                    <button class="form-buttons" type="button" onclick="clearProfileFields()">Clear</button>
                                     <button class="form-buttons" type="submit">Submit</button>
                                 </div>
                             </div>

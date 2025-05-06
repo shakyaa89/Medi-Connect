@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.mediconnect.config.Dbconfig;
 import com.mediconnect.model.AppointmentListModel;
+import com.mediconnect.model.DoctorAvailabilityModel;
 import com.mediconnect.model.DoctorModel;
 import com.mediconnect.model.UserModel;
 
@@ -101,6 +102,42 @@ public class DashboardService {
 			}
 
 			return doctorList;
+			
+		}catch(SQLException e) {
+			System.out.println("Error creating doctor list!");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<DoctorAvailabilityModel> getDoctorAvailabilityList(){
+		if(DbConnection == null) {
+			System.out.println("Database not connected!");
+			return null;
+		}
+		
+		List<DoctorAvailabilityModel> doctorAvailabilityList = new ArrayList<DoctorAvailabilityModel>();
+		
+		String fetchDoctorQuery = "SELECT * FROM doctor_availability";
+		
+		try {
+			PreparedStatement fetchStmt = DbConnection.prepareStatement(fetchDoctorQuery);
+			
+			ResultSet results = fetchStmt.executeQuery();
+			
+			while(results.next()) {
+				Integer doctorAvailablilityId = results.getInt("doctor_availability_id");
+				Integer doctorId = results.getInt("doctor_id");
+				String doctorStartTime = results.getString("start_time");
+				String doctorEndTime = results.getString("end_time");
+				String doctorAvailableDay = results.getString("doctor_available_day");
+				
+				DoctorAvailabilityModel doctorObj = new DoctorAvailabilityModel(doctorAvailablilityId, doctorId, doctorStartTime, doctorEndTime, doctorAvailableDay);
+				
+				doctorAvailabilityList.add(doctorObj);
+			}
+
+			return doctorAvailabilityList;
 			
 		}catch(SQLException e) {
 			System.out.println("Error creating doctor list!");

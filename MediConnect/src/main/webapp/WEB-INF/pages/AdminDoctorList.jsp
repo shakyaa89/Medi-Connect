@@ -48,10 +48,21 @@
 						<c:forEach var="doctor" items="${doctorList}">
 							<tr>
 								<td>${doctor.doctor_id}</td>
-								<td>${doctor.doctorFirstName} ${doctor.doctorLastName }</td>
+								<td>${doctor.doctorFirstName}${doctor.doctorLastName }</td>
 								<td>${doctor.doctorGender}</td>
 								<td>${doctor.doctorSpecialization}</td>
-								<td><button class="add-btn">Edit Doctor</button></td>
+								<td class="buttons">
+									<form action="AdminEditDoctor" method="get">
+										<input type="hidden" value="${doctor.doctor_id }"
+											id="doctorId" name="doctorId">
+										<button class="form-btn">Edit Doctor</button>
+									</form>
+									<form action="AdminDoctorList" method="post" onsubmit="return confirm('Are you sure you want to delete this doctor?');">
+										<input type="hidden" value="${doctor.doctor_id }"
+											id="doctorId" name="doctorId">
+										<button class="form-btn">Delete Doctor</button>
+									</form>
+								</td>
 							</tr>
 						</c:forEach>
 
