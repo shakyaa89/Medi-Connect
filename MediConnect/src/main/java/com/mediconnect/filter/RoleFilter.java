@@ -59,7 +59,7 @@ public class RoleFilter extends HttpFilter implements Filter {
                 return;
             }
         
-        if(role == null) {
+        if(role == null) {	
         	res.sendRedirect(req.getContextPath() + "/AccessDenied");
         	return;
         }

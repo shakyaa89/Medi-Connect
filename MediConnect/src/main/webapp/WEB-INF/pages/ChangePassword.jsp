@@ -9,6 +9,7 @@
 <%-- Create variables for username, role and contextpath --%>
 <c:set var="userSession" value="${pageContext.session}" />
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="currentRole" value="${userSession.getAttribute('role')}" />
 
 <!DOCTYPE html>
 <html>

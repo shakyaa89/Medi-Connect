@@ -29,14 +29,12 @@ public class AdminAddDoctorController extends HttpServlet {
 	private AddService addService;
 	private RedirectionUtil redirectionUtil;
 	private ExtractionUtil extractionUtil;
-	private ImageUtil imageUtil;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public AdminAddDoctorController() {
         super();
         this.extractionUtil = new ExtractionUtil();
-		this.imageUtil = new ImageUtil();
 		this.addService = new AddService();
 		this.redirectionUtil = new RedirectionUtil();
     }
