@@ -81,6 +81,7 @@ public class ImageUtil {
 				return false; // Failed to create the directory
 			}
 		}
+
 		try {
 			// Get the image name
 			String imageName = getImageNameFromPart(part);
@@ -88,6 +89,31 @@ public class ImageUtil {
 			String filePath = savePath + "/" + imageName;
 			// Write the file to the server
 			part.write(filePath);
+			return true; // Upload successful
+		} catch (IOException e) {
+			e.printStackTrace(); // Log the exception
+			return false; // Upload failed
+		}
+	}
+	
+	public boolean uploadImageProjectDirectory(Part part, String rootPath, String saveFolder) {
+		String savePath = rootPath + "images/" + saveFolder;
+		File fileSaveDir = new File(savePath);
+
+		// Ensure the directory exists
+		if (!fileSaveDir.exists()) {
+			if (!fileSaveDir.mkdir()) {
+				return false; // Failed to create the directory
+			}
+		}
+
+		try {
+			// Get the image name
+			String imageName = getImageNameFromPart(part);
+			// Create the file path
+			File filePath = new File(savePath, imageName);
+			// Write the file to the directory
+			part.write(filePath.getAbsolutePath());
 			return true; // Upload successful
 		} catch (IOException e) {
 			e.printStackTrace(); // Log the exception

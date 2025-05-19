@@ -21,7 +21,8 @@ public class ExtractionUtil {
 	private ValidationUtil validationUtil;
 	private ImageUtil imageUtil;
 	private RedirectionUtil redirectionUtil;
-	
+	private static final String imageDirectory = "C:/Users/shash/git/Medi-Connect/MediConnect/src/main/webapp/";
+
 	public ExtractionUtil() {
 		this.updateService = new UpdateService();
 		this.validationUtil = new ValidationUtil();
@@ -84,17 +85,19 @@ public class ExtractionUtil {
 	
 	public boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
 		Part image = req.getPart("image");
-		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Profiles");
+		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Profiles") && imageUtil.uploadImageProjectDirectory(image, imageDirectory, "Profiles");
 	}
 	
 	public boolean uploadDoctorImage(HttpServletRequest req) throws IOException, ServletException {
 		Part image = req.getPart("doctor-image");
-		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "DoctorProfiles");
+		System.out.println(req.getServletContext().getRealPath("/"));
+		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "DoctorProfiles") && imageUtil.uploadImageProjectDirectory(image, imageDirectory, "DoctorProfiles");
 	}
 	
 	public boolean uploadStaffImage(HttpServletRequest req) throws IOException, ServletException {
 		Part image = req.getPart("staff-image");
-		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Profiles");
+		System.out.println(req.getServletContext().getRealPath("/"));
+		return imageUtil.uploadImage(image, req.getServletContext().getRealPath("/"), "Profiles") && imageUtil.uploadImageProjectDirectory(image, imageDirectory, "Profiles");
 	}
 	
 	public DoctorModel extractDoctorModel(HttpServletRequest request, HttpServletResponse response) throws Exception{

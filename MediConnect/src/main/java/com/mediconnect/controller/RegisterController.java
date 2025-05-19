@@ -74,12 +74,13 @@ public class RegisterController extends HttpServlet {
 				System.out.println("Here");
 				try {
 					if (extractionUtil.uploadImage(request)) {
+						System.out.println("Here3");
 						redirectionUtil.redirectToPage(request, response, "login");
 						return;
 					} else {
 						redirectionUtil.setMsgAttribute(request, "error", "Error adding image <br> Please try again later!");
 					}
-				} catch (IOException | ServletException e) {
+				} catch (Exception e) {
 					redirectionUtil.setMsgAttribute(request, "error", "Error Registering <br> Please try again later!");
 					e.printStackTrace(); 
 				}
