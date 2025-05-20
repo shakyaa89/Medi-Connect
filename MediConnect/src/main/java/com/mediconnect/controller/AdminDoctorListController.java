@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.mediconnect.service.DashboardService;
+import com.mediconnect.service.DeleteService;
+import com.mediconnect.util.RedirectionUtil;
 import com.mediconnect.util.SessionUtil;
 
 /**
@@ -17,12 +19,16 @@ import com.mediconnect.util.SessionUtil;
 public class AdminDoctorListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DashboardService dashboardService;
+	DeleteService deleteService;
+	RedirectionUtil redirectionUtil;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public AdminDoctorListController() {
         super();
         dashboardService = new DashboardService();
+        deleteService = new DeleteService();
+        redirectionUtil = new RedirectionUtil();
         // TODO Auto-generated constructor stub
     }
 
@@ -41,7 +47,19 @@ public class AdminDoctorListController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doDelete(request, response);
+	}
+	
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int doctorId = Integer.parseInt(request.getParameter("doctorId"));
+		
+		Boolean isDeleted = deleteService.deleteDoctor(doctorId);
+		
+		if(isDeleted == null) {
+			System.out.println("Error Deleting");
+		}else {
+			redirectionUtil.redirectToPage(request, response, "AdminDashboard");
+		}
 	}
 
 }

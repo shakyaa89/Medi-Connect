@@ -48,7 +48,7 @@
 						<c:forEach var="doctor" items="${doctorList}">
 							<tr>
 								<td>${doctor.doctor_id}</td>
-								<td>${doctor.doctorFirstName}${doctor.doctorLastName }</td>
+								<td>${doctor.doctorFirstName} ${doctor.doctorLastName }</td>
 								<td>${doctor.doctorGender}</td>
 								<td>${doctor.doctorSpecialization}</td>
 								<td class="buttons">
