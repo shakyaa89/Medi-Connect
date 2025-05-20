@@ -7,32 +7,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mediconnect.config.Dbconfig;
+import com.mediconnect.model.AppointmentModel;
 import com.mediconnect.model.DoctorAvailabilityModel;
 import com.mediconnect.model.DoctorModel;
 import com.mediconnect.model.UserModel;
 
 public class UpdateService {
-	
-private Connection dbConnection;
-	
+
+	private Connection dbConnection;
+
 	public UpdateService() {
 		try {
 			this.dbConnection = Dbconfig.getDbConnection();
-		}catch(SQLException | ClassNotFoundException ex) {
+		} catch (SQLException | ClassNotFoundException ex) {
 			System.err.println("Database Connection Error: " + ex.getMessage());
 			ex.printStackTrace();
 		}
 	}
-	
+
 	public Boolean updateUser(UserModel userModel, int userId) {
-		if(dbConnection == null) {
+		if (dbConnection == null) {
 			System.err.println("Database not connected!");
 			return null;
 		}
-		
+
 		String updateQuery = "UPDATE users SET user_first_name = ?, user_last_name = ?, user_username = ?, user_email = ?, user_phonenumber = ?, user_gender = ?, user_dob = ?, user_location = ? WHERE user_id = ?;";
-	
-		try{
+
+		try {
 			PreparedStatement insertStmt = dbConnection.prepareStatement(updateQuery);
 			insertStmt.setString(1, userModel.getUser_first_name());
 			insertStmt.setString(2, userModel.getUser_last_name());
@@ -43,26 +44,26 @@ private Connection dbConnection;
 			insertStmt.setDate(7, Date.valueOf(userModel.getUser_dob()));
 			insertStmt.setString(8, userModel.getUser_location());
 			insertStmt.setInt(9, userId);
-			
+
 			return insertStmt.executeUpdate() > 0;
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			System.err.println("SQL Error");
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public Boolean updateDoctor(DoctorModel doctorModel, DoctorAvailabilityModel doctorAvModel, int doctorId) {
-		if(dbConnection == null) {
+		if (dbConnection == null) {
 			System.err.println("Database not connected!");
 			return null;
 		}
-		
+
 		String updateDoctorQuery = "UPDATE doctors SET doctor_first_name = ?, doctor_last_name = ?, doctor_email = ?, doctor_phonenumber = ?, doctor_address = ?, doctor_gender = ?, doctor_specialization = ?, doctor_experience = ?, doctor_image = ? WHERE doctor_id = ?";
 		String doctorAvailabilityUpdateQuery = "UPDATE doctor_availability SET start_time = ?, end_time = ?, doctor_available_day = ? WHERE doctor_id = ?";
-		
-		try{
+
+		try {
 			PreparedStatement insertStmtDoctor = dbConnection.prepareStatement(updateDoctorQuery);
 			insertStmtDoctor.setString(1, doctorModel.getDoctorFirstName());
 			insertStmtDoctor.setString(2, doctorModel.getDoctorLastName());
@@ -74,36 +75,35 @@ private Connection dbConnection;
 			insertStmtDoctor.setString(8, doctorModel.getDoctorExperience());
 			insertStmtDoctor.setString(9, doctorModel.getDoctorImage());
 			insertStmtDoctor.setInt(10, doctorId);
-			
+
 			int isUpdated = insertStmtDoctor.executeUpdate();
-			
-			if(isUpdated > 0) {
+
+			if (isUpdated > 0) {
 				PreparedStatement availabilityStmt = dbConnection.prepareStatement(doctorAvailabilityUpdateQuery);
 				availabilityStmt.setString(1, doctorAvModel.getStart_time());
 				availabilityStmt.setString(2, doctorAvModel.getEnd_time());
 				availabilityStmt.setString(3, doctorAvModel.getDoctor_available_day());
 				availabilityStmt.setInt(4, doctorId);
-				
+
 				return availabilityStmt.executeUpdate() > 0;
-			}else {
+			} else {
 				System.out.println("Cannot add doctor!");
 				return null;
 			}
-			
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			System.err.println("SQL Error");
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public Integer getUserId(String username) {
-		if(dbConnection == null) {
+		if (dbConnection == null) {
 			System.out.println("Database not connected!");
 			return null;
 		}
-		
+
 		String fetchUserIdQuery = "SELECT user_id FROM users WHERE user_username = ?";
 		ResultSet results = null;
 
@@ -113,39 +113,62 @@ private Connection dbConnection;
 			fetchUserRoleStmt.setString(1, username);
 
 			results = fetchUserRoleStmt.executeQuery();
-			
+
 			if (results.next()) {
 				return results.getInt("user_id");
-			}else {
+			} else {
 				return null;
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.print("Error Fetching User Id");
 			return null;
 		}
 	}
-	
+
 	public Boolean updatePassword(String newPassword, String username) {
-		if(dbConnection == null) {
+		if (dbConnection == null) {
 			System.out.println("Database not connected!");
 			return null;
 		}
-		
+
 		String updateQuery = "UPDATE users SET user_password = ? WHERE user_username = ?";
-		
-		try{
+
+		try {
 			PreparedStatement insertStmt = dbConnection.prepareStatement(updateQuery);
 			insertStmt.setString(1, newPassword);
 			insertStmt.setString(2, username);
-			
+
 			return insertStmt.executeUpdate() > 0;
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			System.err.println("SQL Error");
 			e.printStackTrace();
 			return null;
 		}
+
+	}
+	
+	public Boolean updateAppointment(AppointmentModel appointmentModel, int appointmentId) {
+		if (dbConnection == null) {
+			System.out.println("Database not connected!");
+			return null;
+		}
 		
+		String updateQuery = "UPDATE appointment SET appointment_date = ?, appointment_time = ? WHERE appointment_id = ?";
 		
+		try {
+			PreparedStatement updateStmt = dbConnection.prepareStatement(updateQuery);
+			updateStmt.setDate(1, Date.valueOf(appointmentModel.getAppointment_date()));
+			updateStmt.setString(2, appointmentModel.getAppointment_time());
+			updateStmt.setInt(3, appointmentId);
+
+			return updateStmt.executeUpdate() > 0;
+
+		} catch (SQLException e) {
+			System.err.println("SQL Error");
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 }

@@ -65,3 +65,26 @@ td {
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
+
+.buttons {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+}
+
+.form-btn {
+	background-color: #007bff;
+	color: white;
+	padding: 20px 30px;
+	border: none;
+	border-radius: 25px;
+	cursor: pointer;
+	transition: background 0.3s ease;
+	font-weight: 600;
+
+}
+
+.form-btn:hover {
+	background-color: #0056b3;
+}

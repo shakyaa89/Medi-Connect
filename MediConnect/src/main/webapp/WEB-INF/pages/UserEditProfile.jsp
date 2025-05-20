@@ -59,9 +59,10 @@
                                 <div class="form-column">
                                     <label for="gender">Gender</label>
                                     <select name="gender" id="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="others">Others</option>
+                                   	 	<option value="${gender }" selected hidden>${gender }</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Others</option>
                                     </select>
                                 </div>
                             </div>

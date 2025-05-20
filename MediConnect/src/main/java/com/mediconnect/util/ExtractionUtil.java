@@ -162,11 +162,18 @@ public class ExtractionUtil {
 	}
 	
 	public AppointmentModel extractAppointmentModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String doctorId = request.getParameter("doctors");
 		LocalDate appointmentDate = LocalDate.parse(request.getParameter("date"));
 		String time = request.getParameter("time");
 		
 		
 		return new AppointmentModel(null, appointmentDate, time, "Confirmed");
+	}
+	
+	public AppointmentModel extractAppointmentModelUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		LocalDate appointmentDate = LocalDate.parse(request.getParameter("date"));
+		String time = request.getParameter("time");
+		
+		
+		return new AppointmentModel(appointmentDate, time);
 	}
 }

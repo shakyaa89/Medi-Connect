@@ -57,7 +57,6 @@ public class CustomerBookAppointmentController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			int doctorId = Integer.parseInt((String) SessionUtil.getAttribute(request, "doctorId"));
 

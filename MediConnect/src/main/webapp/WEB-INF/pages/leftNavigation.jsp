@@ -165,7 +165,7 @@
                         </button>
                         <ul class="dropdown-content">
                             <li><a href="AppointmentList">View Appointments</a></li>
-                            <li><a href="#">History</a></li>
+                            <li><a href="UpdateAppointmentList">Update Appointments</a></li>
                         </ul>
                     </li>
 
@@ -227,7 +227,7 @@
                         </button>
                         <ul class="dropdown-content">
                             <li><a href="AppointmentList">View Appointments</a></li>
-                            <li><a href="#">Update Appointments</a></li>
+                            <li><a href="UpdateAppointmentList">Update Appointments</a></li>
                         </ul>
                     </li>
 

@@ -5,24 +5,35 @@ import java.time.LocalDate;
 public class AppointmentListModel {
 	int appointment_id;
 	int user_id;
+	int doctor_id;
 	String user_first_name;
 	String user_last_name;
 	String doctor_first_name;
 	String doctor_last_name;
 	String appointment_time;
 	LocalDate appointment_date;
-	
-	public AppointmentListModel(int appointment_id, int user_id, String user_first_name, String user_last_name,
-			String doctor_first_name, String doctor_last_name, String appointment_time, LocalDate appointment_date) {
+
+	public AppointmentListModel(int appointment_id, int user_id, int doctor_id, String user_first_name,
+			String user_last_name, String doctor_first_name, String doctor_last_name, String appointment_time,
+			LocalDate appointment_date) {
 		super();
 		this.appointment_id = appointment_id;
 		this.user_id = user_id;
+		this.doctor_id = doctor_id;
 		this.user_first_name = user_first_name;
 		this.user_last_name = user_last_name;
 		this.doctor_first_name = doctor_first_name;
 		this.doctor_last_name = doctor_last_name;
 		this.appointment_time = appointment_time;
 		this.appointment_date = appointment_date;
+	}
+
+	public int getDoctor_id() {
+		return doctor_id;
+	}
+
+	public void setDoctor_id(int doctor_id) {
+		this.doctor_id = doctor_id;
 	}
 
 	public int getAppointment_id() {
@@ -88,7 +99,5 @@ public class AppointmentListModel {
 	public void setAppointment_date(LocalDate appointment_date) {
 		this.appointment_date = appointment_date;
 	}
-	
-	
-	
+
 }

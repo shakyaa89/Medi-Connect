@@ -83,4 +83,42 @@ public class DeleteService {
 	}
 	
 	
+	public Boolean deleteAppointment(int appointmentId, int userId) {
+		if (dbConnection == null) {
+			System.err.println("Database not connected!");
+			return null;
+		}
+		
+		PreparedStatement delete = null;
+		
+		String deleteAppointmentsDoctors = "DELETE FROM doctor_user_appointment WHERE appointment_id = ?";
+		String deleteDoctorUser = "DELETE FROM doctor_user WHERE user_id = ?";
+		String deleteAppointment = "DELETE FROM appointment WHERE appointment_id = ?";
+		
+		try {
+			dbConnection.setAutoCommit(false);
+			
+			delete = dbConnection.prepareStatement(deleteAppointmentsDoctors);
+			delete.setInt(1, appointmentId);
+			delete.executeUpdate();
+			
+			delete = dbConnection.prepareStatement(deleteDoctorUser);
+			delete.setInt(1, userId);
+			delete.executeUpdate();
+			
+			delete = dbConnection.prepareStatement(deleteAppointment);
+			delete.setInt(1, appointmentId);
+			delete.executeUpdate();
+			
+			dbConnection.commit();
+			return true;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
 }

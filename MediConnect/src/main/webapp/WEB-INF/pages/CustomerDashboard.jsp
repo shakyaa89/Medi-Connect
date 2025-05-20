@@ -64,7 +64,7 @@
               </div>
             </div>
             <div class="buttonsofwelcome">
-              <button class="edit">Edit Profile</button>
+              <button class="edit" onclick="window.location.href='UserEditProfile'">Edit Profile</button>
               <button class="change" onclick="window.location.href='ChangePassword'">Change password</button>
             </div>
           </div>
