@@ -65,6 +65,8 @@ public class RegisterController extends HttpServlet {
 			String repass = request.getParameter("retypePassword");
 			String phoneNum = request.getParameter("phoneNumber");
 			LocalDate dob = LocalDate.parse(request.getParameter("dateOfBirth"));
+			String username = request.getParameter("username");
+			String email = request.getParameter("email");
 
 			if (!validationUtil.isValidPassword(pass, repass) || !validationUtil.isPasswordSame(pass, repass)) {
 				redirectionUtil.setMsgAttribute(request, "error", "Invalid Password!!");
@@ -80,6 +82,24 @@ public class RegisterController extends HttpServlet {
 			
 			if (!validationUtil.isAgeAtLeast16(dob)) {
 				redirectionUtil.setMsgAttribute(request, "error", "Age should be atleast <br> 18 years and above!!");
+				request.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(request, response);
+				return;
+			}
+			
+			if (!validationUtil.isUsernameDifferent(username)) {
+				redirectionUtil.setMsgAttribute(request, "error", "This username is taken!");
+				request.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(request, response);
+				return;
+			}
+			
+			if (!validationUtil.isEmailDifferent(email)) {
+				redirectionUtil.setMsgAttribute(request, "error", "This email already exists!");
+				request.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(request, response);
+				return;
+			}
+			
+			if (!validationUtil.isPhoneNumDifferent(phoneNum)) {
+				redirectionUtil.setMsgAttribute(request, "error", "This phone number already exists!");
 				request.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(request, response);
 				return;
 			}

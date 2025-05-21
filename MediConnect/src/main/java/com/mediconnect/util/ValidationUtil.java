@@ -3,8 +3,18 @@ package com.mediconnect.util;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
+import java.util.List;
+
+import com.mediconnect.model.UserModel;
+import com.mediconnect.service.DashboardService;
 
 public class ValidationUtil {
+	private DashboardService dashboardService;
+	
+	public ValidationUtil() {
+		dashboardService = new DashboardService();
+	}
+	
 
 	public boolean isValidPassword(String password, String retypePassword) {
       // Implement password validation logic
@@ -55,5 +65,131 @@ public class ValidationUtil {
 	    	e.printStackTrace();
 	    	return false;
 	    }
+	}
+	
+	public boolean isUsernameDifferent(String username) {
+		if (username == null) {
+	        return false;
+	    }
+		
+		List<UserModel> userList = dashboardService.getUserListAll();
+		int matched = 0;
+		
+		for(UserModel user : userList) {
+			if (user.getUser_username().equals(username)) {
+				matched++;
+			}
+		}
+		
+		if(matched > 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public boolean isEmailDifferent(String email) {
+		if (email == null) {
+	        return false;
+	    }
+		
+		List<UserModel> userList = dashboardService.getUserListAll();
+		int matched = 0;
+		
+		for(UserModel user : userList) {
+			if (user.getUser_email().equals(email)) {
+				matched++;
+			}
+		}
+		
+		if(matched > 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public boolean isPhoneNumDifferent(String phoneNum) {
+		if (phoneNum == null) {
+	        return false;
+	    }
+		
+		List<UserModel> userList = dashboardService.getUserListAll();
+		int matched = 0;
+		
+		for(UserModel user : userList) {
+			if (user.getUser_phonenumber().equals(phoneNum)) {
+				matched++;
+			}
+		}
+		
+		if(matched > 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public boolean isUsernameDifferentUpdate(String username, int userId) {
+		if (username == null) {
+	        return false;
+	    }
+		
+		List<UserModel> userList = dashboardService.getUserListAll();
+		int matched = 0;
+		
+		for(UserModel user : userList) {
+			if (user.getUser_id() != userId && user.getUser_username().equals(username)) {
+				matched++;
+			}
+		}
+		
+		if(matched > 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public boolean isEmailDifferentUpdate(String email, int userId) {
+		if (email == null) {
+	        return false;
+	    }
+		
+		List<UserModel> userList = dashboardService.getUserListAll();
+		int matched = 0;
+		
+		for(UserModel user : userList) {
+			if (user.getUser_id() != userId && user.getUser_email().equals(email)) {
+				matched++;
+			}
+		}
+		
+		if(matched > 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public boolean isPhoneNumDifferentUpdate(String phoneNum, int userId) {
+		if (phoneNum == null) {
+	        return false;
+	    }
+		
+		List<UserModel> userList = dashboardService.getUserListAll();
+		int matched = 0;
+		
+		for(UserModel user : userList) {
+			if (user.getUser_id() != userId && user.getUser_phonenumber().equals(phoneNum)) {
+				matched++;
+			}
+		}
+		
+		if(matched > 0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 }

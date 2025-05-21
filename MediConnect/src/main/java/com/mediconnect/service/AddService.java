@@ -99,7 +99,7 @@ public class AddService {
 			insertStmt.setDate(7, Date.valueOf(UserModel.getUser_dob()));
 			insertStmt.setString(8, UserModel.getUser_location());
 			insertStmt.setString(9, UserModel.getUser_password());
-			insertStmt.setString(10, UserModel.getUser_role());
+			insertStmt.setString(10, UserModel.getUser_role()); 
 			insertStmt.setString(11, UserModel.getUser_image());
 
 			return insertStmt.executeUpdate() > 0;

@@ -27,27 +27,33 @@
 					<div class="selectors">
 						<div class="input-group">
 							<label>Select Date</label> <input type="date" name="date"
-								id="date" value="${appointmentDate }" required/>
+								id="date" value="${appointmentDate }" required />
 						</div>
 						<div class="input-group">
-							<label>Select Time</label> <input type="time" id="time" name="time"
-								placeholder="Choose time" value="${appointmentTime }" required/>
+							<label>Select Time</label> <input type="time" id="time"
+								name="time" placeholder="Choose time"
+								value="${appointmentTime }" required />
 						</div>
 					</div>
 					<div class="selectors">
 						<div class="doctor">
-							<label for="doctor">Select Doctor</label> <select id="doctors" name="doctors"
-								class="select-field" required>
+							<label for="doctor">Select Doctor</label> <select id="doctors"
+								name="doctors" class="select-field" required>
 								<c:forEach var="doctor" items="${doctorList }">
 									<c:if test="${doctor.doctor_id == doctorId}">
-										<option value="${doctor.doctorSpecialization }" disabled selected id="doctor">Dr.
-											${doctor.doctorFirstName } ${doctor.doctorLastName }
-											(${doctor.doctorSpecialization})</option>
+										<option value="${doctor.doctorSpecialization }" disabled
+											selected id="doctor">Dr. ${doctor.doctorFirstName }
+											${doctor.doctorLastName } (${doctor.doctorSpecialization})</option>
 									</c:if>
 								</c:forEach>
 							</select>
 						</div>
 					</div>
+					<c:if test="${not empty error}">
+						<div class="selectors">
+							<p style="text-align: center; color: red;">${error }</p>
+						</div>
+					</c:if>
 					<button class="book-btn">Update Appointment</button>
 				</form>
 			</div>
