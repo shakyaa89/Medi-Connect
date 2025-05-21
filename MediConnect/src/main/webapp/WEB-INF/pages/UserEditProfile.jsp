@@ -120,7 +120,7 @@
 						"DOMContentLoaded",
 						function() {
 							document.getElementById("firstName").value = "${userObj.user_first_name}";
-							document.getElementById("lastName").value = "${userObj.user_location}";
+							document.getElementById("lastName").value = "${userObj.user_last_name}";
 							document.getElementById("username").value = "${currentUser}";
 							document.getElementById("gender").value = "${userObj.user_gender}";
 							document.getElementById("location").value = "${userObj.user_location}";

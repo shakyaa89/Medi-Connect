@@ -18,9 +18,9 @@ import com.mediconnect.util.SessionUtil;
 @WebServlet(asyncSupported = true, urlPatterns = { "/AdminDoctorList" })
 public class AdminDoctorListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DashboardService dashboardService;
-	DeleteService deleteService;
-	RedirectionUtil redirectionUtil;
+	private DashboardService dashboardService;
+	private DeleteService deleteService;
+	private RedirectionUtil redirectionUtil;
     /**
      * @see HttpServlet#HttpServlet()
      */

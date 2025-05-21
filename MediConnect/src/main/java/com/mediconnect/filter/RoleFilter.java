@@ -79,6 +79,9 @@ public class RoleFilter extends HttpFilter implements Filter {
             if ("Admin".equals(role) || ("Staff".equals(role))) {
             	chain.doFilter(request, response);
                 return;
+            }else {
+            	res.sendRedirect(req.getContextPath() + "/AccessDenied");
+                return;
             }
         }
 

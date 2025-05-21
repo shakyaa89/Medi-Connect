@@ -23,9 +23,10 @@
 				<div class="doctor-head">
 					<h1>Available Doctors</h1>
 					<form action="SearchController" method="get">
-						<input type="text" name="search" placeholder="Search Doctors" >
+						<input type="text" name="search" placeholder="Search Doctors">
 						<button type="submit" class="search-btn">Search</button>
-						<a href="CustomerDoctorList"><button type="button" class="search-btn">Reset</button></a>
+						<a href="CustomerDoctorList"><button type="button"
+								class="search-btn">Reset</button></a>
 					</form>
 				</div>
 				<div class="card-container">
@@ -37,12 +38,22 @@
 							<div class="doctor-name">Dr. ${doctor.doctorFirstName }
 								${doctor.doctorLastName }</div>
 							<div class="specialization">${doctor.doctorSpecialization }</div>
-							
-							<form action="CustomerBookAppointment" method="get">
-								<input type="hidden" name="doctorId" value="${doctor.doctor_id}" />
-								<button type="submit" class="book-btn">Book</button>
-							</form>
-							
+							<c:forEach var="doctorAv" items="${doctorAvailabilityList}">
+								<c:if test="${doctorAv.doctor_id == doctor.doctor_id }">
+									<div class="specialization">${doctorAv.start_time }-
+										${doctorAv.end_time }</div>
+
+									<form action="CustomerBookAppointment" method="get">
+										<input type="hidden" name="doctorId"
+											value="${doctor.doctor_id}" />
+											<input type="hidden" name="startTime"
+											value="${doctorAv.start_time}" />
+											<input type="hidden" name="endTime"
+											value="${doctorAv.end_time}" />
+										<button type="submit" class="book-btn">Book</button>
+									</form>
+								</c:if>
+							</c:forEach>
 						</div>
 
 					</c:forEach>

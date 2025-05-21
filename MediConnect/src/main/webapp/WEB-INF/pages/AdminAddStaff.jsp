@@ -91,7 +91,7 @@
                                 <label for="staff-image">Profile Picture</label>
                                 <label for="image"
 									style="border: 1px solid blue; padding: 10px 20px; cursor: pointer;">Add
-									Profile Picture</label> <input type="file" id="image" name="image"
+									Profile Picture</label> <input type="file" id="image" name="staff-image"
 									style="display: none;" required>
                             </div>
                         </div>

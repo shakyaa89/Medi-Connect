@@ -72,7 +72,7 @@ public class AdminAddDoctorController extends HttpServlet {
 			} else if (isAdded) {
 				try {
 					if (extractionUtil.uploadDoctorImage(request)) {
-						redirectionUtil.redirectToPage(request, response, "AdminDashboard");
+						redirectionUtil.redirectToPage(request, response, "AdminDoctorList");
 						return;
 					} else {
 						redirectionUtil.setMsgAttribute(request, "error", "Error Adding Doctor!!");

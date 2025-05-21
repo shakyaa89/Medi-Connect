@@ -54,6 +54,11 @@ public class UserEditProfileController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doPut(request, response);
+	}
+
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			HttpSession session = request.getSession();
 			String currentUsername = (String) session.getAttribute("username");
@@ -73,7 +78,8 @@ public class UserEditProfileController extends HttpServlet {
 					redirectionUtil.redirectToPage(request, response, "index");
 					return;
 				} else {
-					redirectionUtil.setMsgAttribute(request, "error", "Error adding image <br> Please try again later!");
+					redirectionUtil.setMsgAttribute(request, "error",
+							"Error adding image <br> Please try again later!");
 				}
 			}
 		} catch (Exception e) {
@@ -81,31 +87,5 @@ public class UserEditProfileController extends HttpServlet {
 		}
 
 	}
-
-//	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession();
-//		String currentUsername = (String) session.getAttribute("username");
-//		int userId = updateService.getUserId(currentUsername);
-//		
-//		System.out.println(userId);
-//		
-//		UserModel userModel = extractionUtil.extractUserModelUpdate(request, response);
-//		Boolean isUpdated = updateService.updateUser(userModel, userId);
-//		
-//		if(isUpdated == null) {
-//			System.out.println("Error adding");
-//		}else if(isUpdated) {
-//			SessionUtil.setAttribute(request, "username", userModel.getUser_username());
-//			SessionUtil.setAttribute(request, "firstName", userModel.getUser_first_name());
-//			SessionUtil.setAttribute(request, "lastName", userModel.getUser_last_name());
-//			SessionUtil.setAttribute(request, "phoneNumber", userModel.getUser_phonenumber());
-//			SessionUtil.setAttribute(request, "location", userModel.getUser_location());
-//			SessionUtil.setAttribute(request, "DOB", userModel.getUser_dob());
-//			SessionUtil.setAttribute(request, "gender", userModel.getUser_gender());
-//			redirectionUtil.redirectToPage(request, response, "index");
-//			return;
-//		}
-//
-//	}
 
 }

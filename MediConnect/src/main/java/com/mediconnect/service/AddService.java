@@ -111,18 +111,29 @@ public class AddService {
 		}
 	}
 
-	public Boolean addAppointment(AppointmentModel appointmentModel, int doctorId, int userId) {
+	public Boolean addAppointment(AppointmentModel appointmentModel, int doctorId, int userId) throws SQLException {
 		if (dbConnection == null) {
 			System.err.println("Database not connected!");
 			return null;
 		}
-
+		
+		String checkQuery = "SELECT 1 FROM doctor_user_appointment WHERE user_id = ? AND doctor_id = ?";
+		PreparedStatement checkStmt = dbConnection.prepareStatement(checkQuery);
+		checkStmt.setInt(1, userId);
+		checkStmt.setInt(2, doctorId);
+		ResultSet result = checkStmt.executeQuery();
+		
+		if (result.next()) {
+		    return false; 
+		}
+		
 		String insertQuery = "INSERT INTO appointment (appointment_id, appointment_date, appointment_time, status) VALUES (NULL, ?, ?, ?)";
 		String insertDoctorUser = "INSERT INTO doctor_user (user_id, doctor_id) VALUES (?, ?)";
 		String insertDoctorUserAppointment = "INSERT INTO doctor_user_appointment (user_id, doctor_id, appointment_id) VALUES (?, ?, ?)";
 		int added = 0;
 
 		try {
+			
 			PreparedStatement insertStmt = dbConnection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
 			System.out.println(appointmentModel.getAppointment_date());
 			insertStmt.setDate(1, Date.valueOf(appointmentModel.getAppointment_date()));
@@ -149,6 +160,7 @@ public class AddService {
 						insertDoctorUserStmt.setInt(2, doctorId);
 
 						if (insertDoctorUserStmt.executeUpdate() > 0) {
+							System.out.println("Hello");
 							added += 1;
 						}
 					}

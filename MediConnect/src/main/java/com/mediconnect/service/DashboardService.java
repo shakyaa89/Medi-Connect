@@ -12,6 +12,7 @@ import java.util.List;
 import com.mediconnect.config.Dbconfig;
 import com.mediconnect.model.AppointmentListModel;
 import com.mediconnect.model.AppointmentModel;
+import com.mediconnect.model.DashboardInfoModel;
 import com.mediconnect.model.DoctorAvailabilityModel;
 import com.mediconnect.model.DoctorModel;
 import com.mediconnect.model.UserModel;
@@ -256,6 +257,126 @@ public class DashboardService {
 			
 		}catch(SQLException e) {
 			System.out.println("Error creating appointment list!");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public DashboardInfoModel getAdminDashboardInfo(){
+		if(DbConnection == null) {
+			System.out.println("Database not connected!");
+			return null;
+		}
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		
+		try {
+			String fetchNumOfDoctor = "SELECT COUNT(*) AS numOfDoctor FROM doctors";
+		    stmt = DbConnection.prepareStatement(fetchNumOfDoctor);
+		    result = stmt.executeQuery();
+		    int numOfDoctor = 0;
+		    if (result.next()) {
+		        numOfDoctor = result.getInt("numOfDoctor");
+		    }
+
+		    String fetchNumOfStaff = "SELECT COUNT(*) AS numOfStaff FROM users WHERE user_role = 'Staff'";
+		    stmt = DbConnection.prepareStatement(fetchNumOfStaff);
+		    result = stmt.executeQuery();
+		    int numOfStaff = 0;
+		    if (result.next()) {
+		        numOfStaff = result.getInt("numOfStaff");
+		    }
+
+		    String fetchNumOfAppointment = "SELECT COUNT(*) AS numOfAppointment FROM appointment";
+		    stmt = DbConnection.prepareStatement(fetchNumOfAppointment);
+		    result = stmt.executeQuery();
+		    int numOfAppointment = 0;
+		    if (result.next()) {
+		        numOfAppointment = result.getInt("numOfAppointment");
+		    }
+
+		    String fetchNumOfCustomer = "SELECT COUNT(*) AS numOfCustomer FROM users WHERE user_role = 'Customer'";
+		    stmt = DbConnection.prepareStatement(fetchNumOfCustomer);
+		    result = stmt.executeQuery();
+		    int numOfCustomer = 0;
+		    if (result.next()) {
+		        numOfCustomer = result.getInt("numOfCustomer");
+		    }
+
+		    String fetchNumOfMaleCustomer = "SELECT COUNT(*) AS numOfMaleCustomer FROM users WHERE user_role = 'Customer' AND user_gender = 'Male'";
+		    stmt = DbConnection.prepareStatement(fetchNumOfMaleCustomer);
+		    result = stmt.executeQuery();
+		    int numOfMaleCustomer = 0;
+		    if (result.next()) {
+		        numOfMaleCustomer = result.getInt("numOfMaleCustomer");
+		    }
+
+		    String fetchNumOfFemaleCustomer = "SELECT COUNT(*) AS numOfFemaleCustomer FROM users WHERE user_role = 'Customer' AND user_gender = 'Female'";
+		    stmt = DbConnection.prepareStatement(fetchNumOfFemaleCustomer);
+		    result = stmt.executeQuery();
+		    int numOfFemaleCustomer = 0;
+		    if (result.next()) {
+		        numOfFemaleCustomer = result.getInt("numOfFemaleCustomer");
+		    }
+		    
+		    String fetchNumOfMaleStaff = "SELECT COUNT(*) AS numOfMaleStaff FROM users WHERE user_role = 'Staff' AND user_gender = 'Male'";
+		    stmt = DbConnection.prepareStatement(fetchNumOfMaleStaff);
+		    result = stmt.executeQuery();
+		    int numOfMaleStaff = 0;
+		    if (result.next()) {
+		    	numOfMaleStaff = result.getInt("numOfMaleStaff");
+		    }
+
+		    String fetchNumOfFemaleStaff = "SELECT COUNT(*) AS numOfFemaleStaff FROM users WHERE user_role = 'Staff' AND user_gender = 'Female'";
+		    stmt = DbConnection.prepareStatement(fetchNumOfFemaleStaff);
+		    result = stmt.executeQuery();
+		    int numOfFemaleStaff = 0;
+		    if (result.next()) {
+		    	numOfFemaleStaff = result.getInt("numOfFemaleStaff");
+		    }
+		    
+		    DashboardInfoModel dashboardObj = new DashboardInfoModel(numOfDoctor, numOfStaff, numOfAppointment, numOfCustomer, numOfMaleCustomer, numOfFemaleCustomer, numOfMaleStaff, numOfFemaleStaff);
+			
+		    return dashboardObj;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	public DashboardInfoModel customerDashboardModel(int userId) {
+		if(DbConnection == null) {
+			System.out.println("Database not connected!");
+			return null;
+		}
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		
+		try {
+			String fetchNumOfAppointments = "SELECT COUNT(*) AS numOfAppointment FROM doctor_user_appointment WHERE user_id = ?";
+		    stmt = DbConnection.prepareStatement(fetchNumOfAppointments);
+		    stmt.setInt(1, userId);
+		    result = stmt.executeQuery();
+		    int numOfAppointment = 0;
+		    if (result.next()) {
+		    	numOfAppointment = result.getInt("numOfAppointment");
+		    }
+		    
+		    String fetchNumOfDoctor = "SELECT COUNT(*) AS numOfDoctor FROM doctors";
+		    stmt = DbConnection.prepareStatement(fetchNumOfDoctor);
+		    result = stmt.executeQuery();
+		    int numOfDoctor = 0;
+		    if (result.next()) {
+		        numOfDoctor = result.getInt("numOfDoctor");
+		    }
+		    
+		    DashboardInfoModel dashboardModel = new DashboardInfoModel(numOfDoctor, numOfAppointment);
+		    
+		    return dashboardModel;
+		    
+		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}

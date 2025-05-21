@@ -23,32 +23,40 @@
 		<div class="list-content">
 			<div class="card">
 				<h2>Book an Appointment</h2>
-				<form action="${pageContext.request.contextPath}/CustomerBookAppointment" method="post">
+				<form
+					action="${pageContext.request.contextPath}/CustomerBookAppointment"
+					method="post">
 					<div class="selectors">
 						<div class="input-group">
 							<label>Select Date</label> <input type="date" name="date"
 								id="date" />
 						</div>
 						<div class="input-group">
-							<label>Select Time</label> <input type="time" id="time" name="time"
-								placeholder="Choose time" required />
+							<label>Select Time</label> <input type="time" id="time"
+								name="time" placeholder="Choose time" required />
 						</div>
 					</div>
 					<div class="selectors">
 						<div class="doctor">
-							<label for="doctor">Select Doctor</label> <select id="doctors" name="doctors"
-								class="select-field" required>
+							<label for="doctor">Select Doctor</label> <select id="doctors"
+								name="doctors" class="select-field" required>
 								<c:forEach var="doctor" items="${doctorList }">
 									<c:if test="${doctor.doctor_id == doctorId}">
-										<option value="${doctor.doctorSpecialization }" disabled selected id="doctor">Dr.
-											${doctor.doctorFirstName } ${doctor.doctorLastName }
-											(${doctor.doctorSpecialization})</option>
+										<option value="${doctor.doctorSpecialization }" disabled
+											selected id="doctor">Dr. ${doctor.doctorFirstName }
+											${doctor.doctorLastName } (${doctor.doctorSpecialization})</option>
 
 									</c:if>
 								</c:forEach>
 							</select>
 						</div>
 					</div>
+					<c:if test="${not empty error}">
+						<div class="selectors">
+							<p style="text-align: center; color: red;">${error }</p>
+						</div>
+					</c:if>
+
 					<button class="book-btn">Book Appointment</button>
 				</form>
 			</div>

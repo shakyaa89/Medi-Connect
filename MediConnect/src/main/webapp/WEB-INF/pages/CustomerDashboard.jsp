@@ -67,14 +67,14 @@
 
         <div class="bottom-div">
           <div class="info-div-btm">
-            <i class="fa-solid fa-dollar-sign"></i>
-            <h4>Revenue</h4>
-            <p>9000</p>
+            <i class="fa-solid fa-bookmark"></i>
+            <h4>Your Appointments</h4>
+            <p>${dashboardNumbers.numOfAppointment }</p>
           </div>
           <div class="info-div-btm">
-            <i class="fa-solid fa-dollar-sign"></i>
-            <h4>Revenue</h4>
-            <p>9000</p>
+            <i class="fa-solid fa-user-doctor"></i>
+            <h4>Doctors Available</h4>
+            <p>${dashboardNumbers.numOfDoctor }</p>
           </div>
         </div>
       </div>

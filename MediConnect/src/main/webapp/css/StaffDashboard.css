@@ -141,3 +141,7 @@ body{
   color: white;
   border: none;
 }
+
+.appointment i{
+	font-size: 40px;
+}

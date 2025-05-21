@@ -44,22 +44,22 @@
 		          <div class="info-div appointment">
 		            <i class="fa-solid fa-bookmark"></i>
 		            <h4>Appointment</h4>
-		            <p>500</p>
+		            <p>${dashboardNumbers.numOfAppointment }</p>
 		          </div>
 		          <div class="info-div staff">
 		            <i class="fa-solid fa-user-nurse"></i>
 		            <h4>Staff</h4>
-		            <p>500</p>
+		            <p>${dashboardNumbers.numOfStaff }</p>
 		          </div>
 		          <div class="info-div doctor">
 		            <i class="fa-solid fa-user-doctor"></i>
 		            <h4>Doctors</h4>
-		            <p>500</p>
+		            <p>${dashboardNumbers.numOfDoctor }</p>
 		          </div>
 		          <div class="info-div patients">
 		            <i class="fa-solid fa-hospital-user"></i>
 		            <h4>Patients</h4>
-		            <p>500</p>
+		            <p>${dashboardNumbers.numOfCustomer }</p>
 		          </div>
 		        </div>
 		        <div class="bottom-div">
@@ -70,19 +70,30 @@
 		              <div class="gender-div male">
 		                <i class="fa-solid fa-person"></i>
 		                <h4>Male</h4>
-		                <p>500</p>
+		                <p>${dashboardNumbers.numOfMaleCustomer }</p>
 		              </div>
 		              <div class="gender-div female">
 		                <i class="fa-solid fa-person-dress"></i>
 		                <h4>Female</h4>
-		                <p>500</p>
+		                <p>${dashboardNumbers.numOfFemaleCustomer }</p>
 		              </div>
 		            </div>
 		          </div>
 		          <div class="info-div-btm">
-		            <i class="fa-solid fa-dollar-sign"></i>
-		            <h4>Revenue</h4>
-		            <p>9000</p>
+		            <h4>Staff by Gender</h4>
+		
+		            <div class="male-female">
+		              <div class="gender-div male">
+		                <i class="fa-solid fa-person"></i>
+		                <h4>Male</h4>
+		                <p>${dashboardNumbers.numOfMaleStaff }</p>
+		              </div>
+		              <div class="gender-div female">
+		                <i class="fa-solid fa-person-dress"></i>
+		                <h4>Female</h4>
+		                <p>${dashboardNumbers.numOfFemaleStaff }</p>
+		              </div>
+		            </div>
 		          </div>
 		        </div>
 		      </div>

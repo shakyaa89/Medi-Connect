@@ -31,9 +31,11 @@ public class UpdateService {
 			return null;
 		}
 
-		String updateQuery = "UPDATE users SET user_first_name = ?, user_last_name = ?, user_username = ?, user_email = ?, user_phonenumber = ?, user_gender = ?, user_dob = ?, user_location = ? WHERE user_id = ?;";
+		String updateQuery = "UPDATE users SET user_first_name = ?, user_last_name = ?, user_username = ?, user_email = ?, user_phonenumber = ?, user_gender = ?, user_dob = ?, user_location = ?, user_image = ? WHERE user_id = ?;";
 
 		try {
+			dbConnection.setAutoCommit(false);
+			
 			PreparedStatement insertStmt = dbConnection.prepareStatement(updateQuery);
 			insertStmt.setString(1, userModel.getUser_first_name());
 			insertStmt.setString(2, userModel.getUser_last_name());
@@ -43,9 +45,12 @@ public class UpdateService {
 			insertStmt.setString(6, userModel.getUser_gender());
 			insertStmt.setDate(7, Date.valueOf(userModel.getUser_dob()));
 			insertStmt.setString(8, userModel.getUser_location());
-			insertStmt.setInt(9, userId);
-
-			return insertStmt.executeUpdate() > 0;
+			insertStmt.setString(9, userModel.getUser_image());
+			insertStmt.setInt(10, userId);
+			
+			int isUpdated = insertStmt.executeUpdate();
+			dbConnection.commit();
+			return isUpdated > 0;
 
 		} catch (SQLException e) {
 			System.err.println("SQL Error");
