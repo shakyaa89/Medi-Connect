@@ -89,7 +89,10 @@
                             </div>
                             <div class="form-column">
                                 <label for="staff-image">Profile Picture</label>
-                                <input type="file" id="staff-image" name="staff-image" required>
+                                <label for="image"
+									style="border: 1px solid blue; padding: 10px 20px; cursor: pointer;">Add
+									Profile Picture</label> <input type="file" id="image" name="image"
+									style="display: none;" required>
                             </div>
                         </div>
                         <div class="form-row">

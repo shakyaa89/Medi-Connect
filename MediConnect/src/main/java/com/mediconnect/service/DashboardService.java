@@ -56,7 +56,6 @@ public class DashboardService {
 				LocalDate userDOB = LocalDate.parse(results.getString("user_dob"));
 				String userAddress = results.getString("user_location");
 				
-				
 				UserModel userObj = new UserModel(userId, userFirstName, userLastName, userUsername, userEmail, userPhoneNumber, userGender, userDOB, userAddress);
 				
 				userList.add(userObj);

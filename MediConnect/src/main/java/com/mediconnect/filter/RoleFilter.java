@@ -70,6 +70,9 @@ public class RoleFilter extends HttpFilter implements Filter {
         }else if (uri.contains("AdminAddStaff") && "Admin".equals(role)) {
         	chain.doFilter(request, response);
             return;
+        }else if (uri.contains("AdminEditStaff") && "Admin".equals(role)) {
+        	chain.doFilter(request, response);
+            return;
         }
         
         if (uri.contains("CustomerList")) {

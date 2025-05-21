@@ -73,12 +73,23 @@ public class AdminEditDoctorController extends HttpServlet {
 			DoctorModel doctorModel = extractionUtil.extractDoctorModel(request, response);
 			DoctorAvailabilityModel doctorAvailabilityModel = extractionUtil.extractDoctorAvailabilityModel(request,
 					response);
+			if(doctorModel == null) {
+	            request.getRequestDispatcher("WEB-INF/pages/AdminEditDoctor.jsp").forward(request, response);
+	            return;
+			}
+			
 			Boolean isUpdated = updateService.updateDoctor(doctorModel, doctorAvailabilityModel, doctorId);
 
+			
 			if (isUpdated == null) {
 				System.out.println("Error Updating Doctor");
 			} else {
-				redirectionUtil.redirectToPage(request, response, "AdminDashboard");
+				if (extractionUtil.uploadDoctorImage(request)) {
+					redirectionUtil.redirectToPage(request, response, "AdminDashboard");
+					return;
+				} else {
+					redirectionUtil.setMsgAttribute(request, "error", "Error adding image <br> Please try again later!");
+				}
 			}
 
 		} catch (Exception e) {

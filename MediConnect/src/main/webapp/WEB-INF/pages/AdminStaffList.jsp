@@ -63,11 +63,14 @@
 		                        <td>${staff.user_dob}</td>
 		                        <td>${staff.user_email}</td>
 		                        <td>${staff.user_phonenumber}</td>
-								<td>
-									<form>
-										<input type="hidden" name="action" value="update"/>
+								<td class="buttons">
+									<form action="AdminEditStaff" method="get">
 										<input type="hidden" name="staffId" value="${staff.user_id}"/>
 										<button class="edit-btn">Edit Staff</button>
+									</form>
+									<form action="AdminStaffList" method="post" onsubmit="return confirm('Are you sure you want to delete this staff?');">
+										<input type="hidden" name="staffId" value="${staff.user_id}" />
+										<button class="edit-btn">Delete Staff</button>
 									</form>
 								</td>
 		                    </tr>

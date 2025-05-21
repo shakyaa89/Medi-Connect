@@ -5,10 +5,8 @@
 <%-- Variables for role, firstname, lastname, fullname --%>
 <c:set var="userSession" value="${pageContext.session}" />
 <c:set var="currentRole" value="${userSession.getAttribute('role')}" />
-<c:set var="firstName" value="${userSession.getAttribute('firstName')}" />
-<c:set var="lastName" value="${userSession.getAttribute('lastName')}" />
-<c:set var="fullName" value="${firstName } ${lastName }" />
-<c:set var="image" value="${userSession.getAttribute('image')}" />
+<c:set var="userObj" value="${userSession.getAttribute('userObj')}" />
+<c:set var="fullName" value="${userObj.user_first_name } ${userObj.user_last_name }" />
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +25,7 @@
             <div class="sidebar">
                 <%-- Image and Name section --%>
                 <div class="profile-section">
-                    <img src="${pageContext.request.contextPath}/images/Profiles/${image}" alt="Profile Picture" />
+                    <img src="${pageContext.request.contextPath}/images/Profiles/${userObj.user_image}" alt="${userObj.user_image }" />
                     <p class="profile-name">${fullName}</p>
                 </div> 
 
@@ -89,7 +87,7 @@
                         </button>
                         <ul class="dropdown-content">
                             <li><a href="AppointmentList">View Appointments</a></li>
-                            <li><a href="#">History</a></li>
+                            <li><a href="UpdateAppointmentList">Update Appointment</a></li>
                         </ul>
                     </li>
 
@@ -129,7 +127,7 @@
             <div class="sidebar">
                 <%-- Image and Name section --%>
                 <div class="profile-section">
-                    <img src="${pageContext.request.contextPath}/images/Profiles/${image}" alt="${image}" />
+                    <img src="${pageContext.request.contextPath}/images/Profiles/${userObj.user_image}" alt="${userObj.user_image}" />
                     <p class="profile-name">${fullName}</p>
                 </div> 
 
@@ -193,7 +191,7 @@
             <div class="sidebar">
                 <%-- Profile Image and name --%>
                 <div class="profile-section">
-                    <img src="${pageContext.request.contextPath}/images/Profiles/${image }" alt="${image }" />
+                    <img src="${pageContext.request.contextPath}/images/Profiles/${userObj.user_image }" alt="${userObj.user_image }" />
                     <p class="profile-name">${fullName}</p>
                 </div>
 

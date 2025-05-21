@@ -120,5 +120,31 @@ public class DeleteService {
 		return null;
 	}
 	
+	public Boolean deleteStaff(int staffId) {
+		if (dbConnection == null) {
+			System.err.println("Database not connected!");
+			return null;
+		}
+		
+		
+		String deleteStaff = "DELETE FROM users WHERE user_id = ?";
+		
+		try {
+			dbConnection.setAutoCommit(false);
+			
+			PreparedStatement delete = dbConnection.prepareStatement(deleteStaff);
+			delete.setInt(1, staffId);
+			delete.executeUpdate();
+			
+			dbConnection.commit();
+			return true;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	
 }

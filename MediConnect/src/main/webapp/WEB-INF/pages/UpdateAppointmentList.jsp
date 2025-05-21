@@ -8,7 +8,8 @@
 <c:set var="currentUser" value="${userSession.getAttribute('username')}" />
 <c:set var="currentRole" value="${userSession.getAttribute('role')}" />
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:set var="userId" value="${userSession.getAttribute('userId')}" />
+
+<c:set var="userObj" value="${userSession.getAttribute('userObj')}" />
 
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,7 @@
 						<c:choose>
 							<c:when test="${currentRole == 'Customer' }">
 								<c:forEach var="appointment" items="${appointmentList}">
-									<c:if test="${appointment.user_id == userId }">
+									<c:if test="${appointment.user_id == userObj.user_id }">
 										<tr>
 											<td>${appointment.appointment_id }</td>
 											<td>Dr. ${appointment.doctor_first_name }

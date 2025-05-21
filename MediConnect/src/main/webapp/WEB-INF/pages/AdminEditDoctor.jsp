@@ -51,7 +51,7 @@
 		<div class="list-content">
 			<div class="add-doctor-container">
 				<div class="add-doctor-head">
-					<h1>Add Doctor</h1>
+					<h1>Edit Doctor</h1>
 					<h3>Personal Details</h3>
 				</div>
 				<div class="add-doctor-form-container">
@@ -99,11 +99,11 @@
 						</div>
 						<div class="form-row">
 							<div class="form-column">
-								<label for="start-time">Start Time</label> <input type="text"
+								<label for="start-time">Start Time</label> <input type="time"
 									id="start-time" name="start-time" required>
 							</div>
 							<div class="form-column">
-								<label for="end-time">End Time</label> <input type="text"
+								<label for="end-time">End Time</label> <input type="time"
 									id="end-time" name="end-time" required>
 							</div>
 							<div class="form-column">
@@ -121,9 +121,17 @@
 						</div>
 						<div class="form-row">
 							<div class="form-column">
-								<label for="doctor-image">Picture</label> <input type="file"
-									id="doctor-image" name="doctor-image" required>
+								<label for="image"
+									style="border: 1px solid blue; padding: 10px 20px; cursor: pointer;">Add
+									Profile Picture</label> <input type="file" id="image" name="image"
+									style="display: none;" required>
 							</div>
+							<c:if test="${not empty error}">
+								<div class="form-column">
+									<p style="text-align: center; color: red;">${error }</p>
+								</div>
+
+							</c:if>
 						</div>
 						<div class="form-row">
 							<div class="buttons">

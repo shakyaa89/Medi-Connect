@@ -16,7 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/AdminAddDoctor.css" />
+	href="${pageContext.request.contextPath}/css/AdminAddStaff.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/ErrorMessage.css" />
 <link rel="stylesheet"
@@ -24,20 +24,21 @@
 <title>MediConnect - Admin</title>
 </head>
 <body>
+
 	<jsp:include page="header.jsp" />
 
 	<section class="main-content">
 		<jsp:include page="leftNavigation.jsp" />
 
 		<div class="list-content">
-			<div class="add-doctor-container">
-				<div class="add-doctor-head">
-					<h1>Add Doctor</h1>
+			<div class="add-staff-container">
+				<div class="add-staff-head">
+					<h1>Edit Staff</h1>
 					<h3>Personal Details</h3>
 				</div>
-				<div class="add-doctor-form-container">
-					<form action="AdminAddDoctor" method="post"
-						enctype="multipart/form-data">
+				<div class="add-staff-form-container">
+					<form action="AdminEditStaff" method="post"
+						enctype="multipart/form-data" id="editProfileForm">
 						<div class="form-row">
 							<div class="form-column">
 								<label for="firstName">First Name</label> <input type="text"
@@ -48,26 +49,8 @@
 									id="lastName" name="lastName" required>
 							</div>
 							<div class="form-column">
-								<label for="email">Email</label> <input type="email" id="email"
-									name="email" required>
-							</div>
-							<div class="form-column">
-								<label for="phoneNumber">Phone Number</label> <input type="tel"
-									id="phoneNumber" name="phoneNumber" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-column">
-								<label for="location">Location</label> <input type="text"
-									id="location" name="location" required>
-							</div>
-							<div class="form-column">
-								<label for="specialization">Specialization</label> <input
-									type="text" id="specialization" name="specialization" required>
-							</div>
-							<div class="form-column">
-								<label for="experience">Experience</label> <input type="text"
-									id="experience" name="experience" required>
+								<label for="username">Username</label> <input type="text"
+									id="username" name="username" required>
 							</div>
 							<div class="form-column">
 								<label for="gender">Gender</label> <select name="gender"
@@ -80,22 +63,20 @@
 						</div>
 						<div class="form-row">
 							<div class="form-column">
-								<label for="start-time">Start Time</label> <input type="time"
-									id="start-time" name="start-time" required>
+								<label for="location">Location</label> <input type="text"
+									id="location" name="location" required>
 							</div>
 							<div class="form-column">
-								<label for="end-time">End Time</label> <input type="time"
-									id="end-time" name="end-time" required>
+								<label for="date-of-birth">Date of birth</label> <input
+									type="date" id="date-of-birth" name="date-of-birth" required>
 							</div>
 							<div class="form-column">
-								<label for="available-days">Available Days</label>
-								<div class="days">
-									<input type="checkbox" id="WeekDays" name="WeekDays"
-										value="Week Days" checked> <label class="day-label"
-										for="WeekDays">Week Days</label> <input type="checkbox"
-										id="WeekEnd" name="WeekEnd" value="Week End"> <label
-										class="day-label" for="WeekEnd">Week End</label>
-								</div>
+								<label for="email">Email</label> <input type="email" id="email"
+									name="email" required>
+							</div>
+							<div class="form-column">
+								<label for="phoneNumber">Phone Number</label> <input type="tel"
+									id="phoneNumber" name="phoneNumber" required>
 							</div>
 						</div>
 						<div class="form-row">
@@ -104,19 +85,12 @@
 									style="border: 1px solid blue; padding: 10px 20px; cursor: pointer;">Add
 									Profile Picture</label> <input type="file" id="image" name="image"
 									style="display: none;" required>
-									
 							</div>
-							<c:if test="${not empty error}">
-								<div class="form-column">
-									<p style="text-align: center; color: red;">${error }</p>
-								</div>
-
-							</c:if>
 						</div>
 						<div class="form-row">
 							<div class="buttons">
-								<button class="form-buttons" type="reset">Clear</button>
-								<button class="form-buttons">Submit</button>
+								<button class="form-buttons" type="button" onclick="clearProfileFields()">Clear</button>
+								<button class="form-buttons" type="submit">Submit</button>
 							</div>
 						</div>
 					</form>
@@ -124,7 +98,24 @@
 			</div>
 		</div>
 
+
 	</section>
+	<script src="${pageContext.request.contextPath}/js/leftNavAdmin.js"></script>
+	<script>
+		window
+				.addEventListener(
+						"DOMContentLoaded",
+						function() {
+							document.getElementById("firstName").value = "${staffObj.user_first_name}";
+							document.getElementById("lastName").value = "${staffObj.user_last_name}";
+							document.getElementById("username").value = "${staffObj.user_username}";
+							document.getElementById("gender").value = "${staffObj.user_gender}";
+							document.getElementById("location").value = "${staffObj.user_location}";
+							document.getElementById("date-of-birth").value = "${staffObj.user_dob}";
+							document.getElementById("email").value = "${staffObj.user_email}";
+							document.getElementById("phoneNumber").value = "${staffObj.user_phonenumber}";
+						});
+	</script>
 </body>
 </html>
 

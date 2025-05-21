@@ -8,13 +8,8 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="currentUser" value="${userSession.getAttribute('username')}" />
 <c:set var="currentRole" value="${userSession.getAttribute('role')}" />
-<c:set var="firstName" value="${userSession.getAttribute('firstName')}" />
-<c:set var="lastName" value="${userSession.getAttribute('lastName')}" />
-<c:set var="gender" value="${userSession.getAttribute('gender')}" />
-<c:set var="DOB" value="${userSession.getAttribute('DOB')}" />
-<c:set var="location" value="${userSession.getAttribute('location')}" />
-<c:set var="phoneNumber" value="${userSession.getAttribute('phoneNumber')}" />
-<c:set var="image" value="${userSession.getAttribute('image')}" />
+<c:set var="userObj" value="${userSession.getAttribute('userObj')}" />
+
 
   
   
@@ -28,7 +23,7 @@
 		      rel="stylesheet"
 		      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 		    />
-		<title>MediConnect - Admin</title>
+		<title>MediConnect - Patient</title>
 		</head>
 		<body>
 		<jsp:include page="header.jsp"/>
@@ -39,7 +34,7 @@
 		      <div class="right-content">
         <div class="top-div">
           <div class="left">
-            <h1>Welcome to Customer Dashboard</h1>
+            <h1>Welcome to Patient Dashboard</h1>
             <p>Here you can manage your profile.</p>
           </div>
           <div class="right">
@@ -52,15 +47,15 @@
             <h2>Account Details</h2>
             <div class="details">
               <div class="left">
-                <p><strong>First Name :</strong> ${firstName }</p>
-                <p><strong>Username:</strong> ${username }</p>
-                <p><strong>Location:</strong> ${location }</p>
-                <p><strong>Gender:</strong> ${gender }</p>
+                <p><strong>First Name :</strong> ${userObj.user_first_name }</p>
+                <p><strong>Username:</strong> ${currentUser }</p>
+                <p><strong>Location:</strong> ${userObj.user_location }</p>
+                <p><strong>Gender:</strong> ${userObj.user_gender }</p>
               </div>
               <div class="right">
-                <p><strong>Last Name :</strong> ${lastName }</p>
-                <p><strong>Phone No:</strong> ${phoneNumber }</p>
-                <p><strong>Birth Date:</strong> ${DOB }</p>
+                <p><strong>Last Name :</strong> ${userObj.user_last_name }</p>
+                <p><strong>Phone No:</strong> ${userObj.user_phonenumber }</p>
+                <p><strong>Birth Date:</strong> ${userObj.user_dob }</p>
               </div>
             </div>
             <div class="buttonsofwelcome">

@@ -15,8 +15,7 @@ public class UserModel {
 	private String user_password;
 	private String user_role;
 	private String user_image;
-	
-	
+
 	public UserModel(Integer user_id, String user_first_name, String user_last_name, String user_username,
 			String user_email, String user_phonenumber, String user_gender, LocalDate user_dob, String user_location,
 			String user_password, String user_role, String user_image) {
@@ -35,7 +34,6 @@ public class UserModel {
 		this.user_image = user_image;
 	}
 
-
 	public UserModel(String user_first_name, String user_last_name, String user_username, String user_email,
 			String user_phonenumber, String user_gender, LocalDate user_dob, String user_location, String user_password,
 			String user_role) {
@@ -52,9 +50,9 @@ public class UserModel {
 		this.user_role = user_role;
 	}
 
-
 	public UserModel(Integer user_id, String user_first_name, String user_last_name, String user_username,
-			String user_email, String user_phonenumber, String user_gender, LocalDate user_dob, String user_location) {
+			String user_email, String user_phonenumber, String user_gender, String user_location, LocalDate user_dob,
+			String user_image) {
 		this.user_id = user_id;
 		this.user_first_name = user_first_name;
 		this.user_last_name = user_last_name;
@@ -64,10 +62,12 @@ public class UserModel {
 		this.user_gender = user_gender;
 		this.user_dob = user_dob;
 		this.user_location = user_location;
+		this.user_image = user_image;
 	}
 
 	public UserModel(Integer user_id, String user_first_name, String user_last_name, String user_username,
-			String user_email, String user_phonenumber, String user_gender, String user_location, String user_role, LocalDate user_dob, String user_image) {
+			String user_email, String user_phonenumber, String user_gender, String user_location, String user_role,
+			LocalDate user_dob, String user_image) {
 		this.user_id = user_id;
 		this.user_first_name = user_first_name;
 		this.user_last_name = user_last_name;
@@ -81,7 +81,9 @@ public class UserModel {
 		this.user_image = user_image;
 	}
 
-	public UserModel(Integer user_id, String user_first_name, String user_last_name, String user_username, String user_email, String user_phonenumber, String user_gender, LocalDate user_dob, String user_location, String user_password, String user_role) {
+	public UserModel(Integer user_id, String user_first_name, String user_last_name, String user_username,
+			String user_email, String user_phonenumber, String user_gender, LocalDate user_dob, String user_location,
+			String user_password, String user_role) {
 		this.user_id = user_id;
 		this.user_first_name = user_first_name;
 		this.user_last_name = user_last_name;
@@ -94,7 +96,6 @@ public class UserModel {
 		this.user_password = user_password;
 		this.user_role = user_role;
 	}
-	
 
 	public UserModel(Integer user_id, String user_first_name, String user_last_name, String user_username,
 			String user_email, String user_phonenumber, String user_gender, LocalDate user_dob, String user_location,
@@ -112,22 +113,47 @@ public class UserModel {
 		this.user_password = user_password;
 	}
 
+	public UserModel(Integer user_id, String user_first_name, String user_last_name, String user_username,
+			String user_email, String user_phonenumber, String user_gender, LocalDate user_dob, String user_location) {
+		super();
+		this.user_id = user_id;
+		this.user_first_name = user_first_name;
+		this.user_last_name = user_last_name;
+		this.user_username = user_username;
+		this.user_email = user_email;
+		this.user_phonenumber = user_phonenumber;
+		this.user_gender = user_gender;
+		this.user_dob = user_dob;
+		this.user_location = user_location;
+	}
+
 	public UserModel(String user_username, String user_password) {
 		super();
 		this.user_username = user_username;
 		this.user_password = user_password;
 	}
-	
+
+	public UserModel(String user_first_name, String user_last_name, String user_username, String user_email,
+			String user_phonenumber, String user_gender, String user_location, String user_image, LocalDate user_dob) {
+		super();
+		this.user_first_name = user_first_name;
+		this.user_last_name = user_last_name;
+		this.user_username = user_username;
+		this.user_email = user_email;
+		this.user_phonenumber = user_phonenumber;
+		this.user_gender = user_gender;
+		this.user_dob = user_dob;
+		this.user_location = user_location;
+		this.user_image = user_image;
+	}
 
 	public UserModel() {
 		super();
 	}
 
-
 	public String getUser_image() {
 		return user_image;
 	}
-
 
 	public void setUser_image(String user_image) {
 		this.user_image = user_image;
@@ -212,18 +238,13 @@ public class UserModel {
 	public void setUser_password(String user_password) {
 		this.user_password = user_password;
 	}
-	
+
 	public String getUser_role() {
 		return user_role;
 	}
 
-
 	public void setUser_role(String user_role) {
 		this.user_role = user_role;
 	}
-	
-	
+
 }
-
-
-

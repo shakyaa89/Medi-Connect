@@ -20,7 +20,14 @@
 
 		<div class="list-content">
 			<div class="doctor-container">
-				<h1>Available Doctors:</h1>
+				<div class="doctor-head">
+					<h1>Available Doctors</h1>
+					<form action="SearchController" method="get">
+						<input type="text" name="search" placeholder="Search Doctors" >
+						<button type="submit" class="search-btn">Search</button>
+						<a href="CustomerDoctorList"><button type="button" class="search-btn">Reset</button></a>
+					</form>
+				</div>
 				<div class="card-container">
 					<c:forEach var="doctor" items="${doctorList}">
 						<div class="card">
@@ -30,7 +37,8 @@
 							<div class="doctor-name">Dr. ${doctor.doctorFirstName }
 								${doctor.doctorLastName }</div>
 							<div class="specialization">${doctor.doctorSpecialization }</div>
-							<form action="${pageContext.request.contextPath}/CustomerBookAppointment" method="get">
+							
+							<form action="CustomerBookAppointment" method="get">
 								<input type="hidden" name="doctorId" value="${doctor.doctor_id}" />
 								<button type="submit" class="book-btn">Book</button>
 							</form>

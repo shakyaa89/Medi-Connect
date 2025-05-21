@@ -66,15 +66,7 @@ public class LoginController extends HttpServlet {
 			
 			SessionUtil.setAttribute(request, "username", userModelDatabase.getUser_username());
 			SessionUtil.setAttribute(request, "role", userRole);
-			SessionUtil.setAttribute(request, "firstName", userModelDatabase.getUser_first_name());
-			SessionUtil.setAttribute(request, "lastName", userModelDatabase.getUser_last_name());
-			SessionUtil.setAttribute(request, "phoneNumber", userModelDatabase.getUser_phonenumber());
-			SessionUtil.setAttribute(request, "location", userModelDatabase.getUser_location());
-			SessionUtil.setAttribute(request, "DOB", userModelDatabase.getUser_dob());
-			SessionUtil.setAttribute(request, "gender", userModelDatabase.getUser_gender());
-			SessionUtil.setAttribute(request, "email", userModelDatabase.getUser_email());
-			SessionUtil.setAttribute(request, "image", userModelDatabase.getUser_image());
-			SessionUtil.setAttribute(request, "userId", userModelDatabase.getUser_id());
+			SessionUtil.setAttribute(request, "userObj", userModelDatabase);
 			if(userRole.equals("Admin")) {
 				CookiesUtil.addCookie(response, "role", "Admin", 5 * 30);
 				redirectionUtil.redirectToPage(request, response, "AdminDashboard");

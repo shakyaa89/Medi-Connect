@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.mediconnect.model.AppointmentModel;
+import com.mediconnect.model.UserModel;
 import com.mediconnect.service.AddService;
 import com.mediconnect.service.DashboardService;
 import com.mediconnect.util.ExtractionUtil;
@@ -60,7 +61,9 @@ public class CustomerBookAppointmentController extends HttpServlet {
 		try {
 			int doctorId = Integer.parseInt((String) SessionUtil.getAttribute(request, "doctorId"));
 
-			int userId = (int) SessionUtil.getAttribute(request, "userId");
+			UserModel user = (UserModel) SessionUtil.getAttribute(request, "userObj");
+			
+			int userId = user.getUser_id();
 
 			AppointmentModel appointmentModel = extractionUtil.extractAppointmentModel(request, response);
 			Boolean isAdded = addService.addAppointment(appointmentModel, doctorId, userId);

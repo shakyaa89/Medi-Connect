@@ -171,4 +171,34 @@ public class UpdateService {
 		}
 
 	}
+	
+	public Boolean updateStaff(UserModel UserModel, int staffId) {
+		if (dbConnection == null) {
+			System.err.println("Database not connected!");
+			return null;
+		}
+
+		String updateQuery = "UPDATE users SET user_first_name = ?, user_last_name = ?, user_username = ?, user_email = ?, user_phonenumber = ?, user_gender = ?, user_dob = ?, user_location = ?, user_image = ? WHERE user_id = ?";
+
+		try {
+			PreparedStatement updateStmt = dbConnection.prepareStatement(updateQuery);
+			updateStmt.setString(1, UserModel.getUser_first_name());
+			updateStmt.setString(2, UserModel.getUser_last_name());
+			updateStmt.setString(3, UserModel.getUser_username());
+			updateStmt.setString(4, UserModel.getUser_email());
+			updateStmt.setString(5, UserModel.getUser_phonenumber());
+			updateStmt.setString(6, UserModel.getUser_gender());
+			updateStmt.setDate(7, Date.valueOf(UserModel.getUser_dob()));
+			updateStmt.setString(8, UserModel.getUser_location());
+			updateStmt.setString(9, UserModel.getUser_image());
+			updateStmt.setInt(10, staffId);
+
+			return updateStmt.executeUpdate() > 0;
+
+		} catch (SQLException e) {
+			System.err.println("Error");
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

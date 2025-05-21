@@ -37,7 +37,7 @@ public class ExtractionUtil {
 		return new UserModel(username, password);
 	}
 	
-	public UserModel extractUserModelUpdate(HttpServletRequest request, HttpServletResponse response) {
+	public UserModel extractUserModelUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session = request.getSession();
 		String currentUsername = (String) session.getAttribute("username");
 		
@@ -52,7 +52,10 @@ public class ExtractionUtil {
 		
 		int userId = updateService.getUserId(currentUsername);
 		
-		return new UserModel(userId, name, lastName, username, email, phoneNum, gender, birthday, location);
+		Part image = request.getPart("image");
+		String imageUrl = imageUtil.getImageNameFromPart(image);
+		
+		return new UserModel(userId, name, lastName, username, email, phoneNum, gender, location, birthday, imageUrl);
 	}
 	
 	public UserModel extractUserModelRegister(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -72,15 +75,13 @@ public class ExtractionUtil {
 		String imageUrl = imageUtil.getImageNameFromPart(image);
 		
 		if(!validationUtil.isValidPassword(pass, repass) || !validationUtil.isPasswordSame(pass, repass)) {
-			redirectionUtil.setMsgAttribute(request, "error", "Invalid Password!!");
-			System.out.println("error password");
+			return null;
+		}else if(!validationUtil.isValidPhoneNumber(phoneNum)){
 			return null;
 		}else {
 			pass = PasswordEncryptionUtil.encrypt(pass);
 			return new UserModel(null, name, lastName, username, email, phoneNum, gender, birthday, location, pass, "Customer", imageUrl);
 		}
-
-		
 	}
 	
 	public boolean uploadImage(HttpServletRequest req) throws IOException, ServletException {
@@ -103,7 +104,6 @@ public class ExtractionUtil {
 	public DoctorModel extractDoctorModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String name = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
-		String username = request.getParameter("username");
 		String location = request.getParameter("location");
 		String email = request.getParameter("email");
 		String specialization = request.getParameter("specialization");
@@ -114,7 +114,14 @@ public class ExtractionUtil {
 		Part image = request.getPart("doctor-image");
 		String imageUrl = imageUtil.getImageNameFromPart(image);
 		
-		return new DoctorModel(name, lastName, email, phoneNum, location, gender, specialization, experience, imageUrl);
+		if(!validationUtil.isValidPhoneNumber(phoneNum)){
+			redirectionUtil.setMsgAttribute(request, "error", "Invalid Phonenumber!!");
+			System.out.println("Error Phonenumber");
+			return null;
+		}else {
+			return new DoctorModel(name, lastName, email, phoneNum, location, gender, specialization, experience, imageUrl);
+		}
+		
 	}
 	
 	public DoctorAvailabilityModel extractDoctorAvailabilityModel(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -159,6 +166,22 @@ public class ExtractionUtil {
 		pass = PasswordEncryptionUtil.encrypt(pass);
 		
 		return new UserModel(null, name, lastName, username, email, phoneNum, gender, birthday, location, pass, "Staff", imageUrl);
+	}
+	
+	public UserModel extractStaffModelUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String name = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String username = request.getParameter("username");
+		String location = request.getParameter("location");
+		String email = request.getParameter("email");
+		LocalDate birthday = LocalDate.parse(request.getParameter("date-of-birth"));
+		String phoneNum = request.getParameter("phoneNumber");
+		String gender = request.getParameter("gender");
+		
+		Part image = request.getPart("staff-image");
+		String imageUrl = imageUtil.getImageNameFromPart(image);
+				
+		return new UserModel(name, lastName, username, email, phoneNum, gender, location, imageUrl, birthday);
 	}
 	
 	public AppointmentModel extractAppointmentModel(HttpServletRequest request, HttpServletResponse response) throws Exception{

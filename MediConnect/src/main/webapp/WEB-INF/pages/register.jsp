@@ -109,7 +109,7 @@
 					<%-- Sign-up Button --%>
 					<div class="signup-buttons">
 						<c:if test="${not empty error}">
-							<p style="text-align: center; color: red;">${error}</p>
+							<p style="text-align: center; color: red;">${error }</p>
 						</c:if>
 						<button class="signup" type="submit">Sign up</button>
 						<p>
