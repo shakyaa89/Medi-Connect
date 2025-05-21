@@ -3,16 +3,34 @@ package com.mediconnect.model;
 import java.time.LocalDate;
 
 public class AppointmentListModel {
+	// Unique ID for the appointment
 	int appointment_id;
+	
+	// ID of the user 
 	int user_id;
+	
+	// ID of the doctor
 	int doctor_id;
+	
+	// Patient's first name
 	String user_first_name;
+	
+	// Patient's last name
 	String user_last_name;
+	
+	// Doctor's first name
 	String doctor_first_name;
+	
+	// Doctor's last name
 	String doctor_last_name;
+	
+	// Time of the appointment
 	String appointment_time;
+	
+	// Date of the appointment
 	LocalDate appointment_date;
 
+	// Constructor to initialize all fields
 	public AppointmentListModel(int appointment_id, int user_id, int doctor_id, String user_first_name,
 			String user_last_name, String doctor_first_name, String doctor_last_name, String appointment_time,
 			LocalDate appointment_date) {
@@ -28,6 +46,7 @@ public class AppointmentListModel {
 		this.appointment_date = appointment_date;
 	}
 
+	// Getter and setter for doctor_id
 	public int getDoctor_id() {
 		return doctor_id;
 	}
@@ -36,6 +55,7 @@ public class AppointmentListModel {
 		this.doctor_id = doctor_id;
 	}
 
+	// Getter and setter for appointment_id
 	public int getAppointment_id() {
 		return appointment_id;
 	}
@@ -44,6 +64,7 @@ public class AppointmentListModel {
 		this.appointment_id = appointment_id;
 	}
 
+	// Getter and setter for user_id
 	public int getUser_id() {
 		return user_id;
 	}
@@ -52,6 +73,7 @@ public class AppointmentListModel {
 		this.user_id = user_id;
 	}
 
+	// Getter and setter for user_first_name
 	public String getUser_first_name() {
 		return user_first_name;
 	}
@@ -60,6 +82,7 @@ public class AppointmentListModel {
 		this.user_first_name = user_first_name;
 	}
 
+	// Getter and setter for user_last_name
 	public String getUser_last_name() {
 		return user_last_name;
 	}
@@ -68,6 +91,7 @@ public class AppointmentListModel {
 		this.user_last_name = user_last_name;
 	}
 
+	// Getter and setter for doctor_first_name
 	public String getDoctor_first_name() {
 		return doctor_first_name;
 	}
@@ -76,6 +100,7 @@ public class AppointmentListModel {
 		this.doctor_first_name = doctor_first_name;
 	}
 
+	// Getter and setter for doctor_last_name
 	public String getDoctor_last_name() {
 		return doctor_last_name;
 	}
@@ -84,6 +109,7 @@ public class AppointmentListModel {
 		this.doctor_last_name = doctor_last_name;
 	}
 
+	// Getter and setter for appointment_time
 	public String getAppointment_time() {
 		return appointment_time;
 	}
@@ -92,6 +118,7 @@ public class AppointmentListModel {
 		this.appointment_time = appointment_time;
 	}
 
+	// Getter and setter for appointment_date
 	public LocalDate getAppointment_date() {
 		return appointment_date;
 	}

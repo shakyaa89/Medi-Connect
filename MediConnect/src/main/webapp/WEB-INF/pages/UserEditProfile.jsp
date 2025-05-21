@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- Declare the page language and content encoding --%>
+<%-- Declare page language and character encoding --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%-- Include JSTL core and functions tag libraries --%>
+<%-- Import JSTL core and functions libraries --%>
 
-<%-- Create variables for username, role and contextpath --%>
+<%-- Set session-based user details --%>
 <c:set var="userSession" value="${pageContext.session}" />
 <c:set var="currentUser" value="${userSession.getAttribute('username')}" />
 <c:set var="currentRole" value="${userSession.getAttribute('role')}" />
@@ -17,15 +17,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%-- Include custom CSS styles --%>
 <link rel="stylesheet" href="${contextPath}/css/UserEditProfile.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/ErrorMessage.css" />
 <title>MediConnect - Admin</title>
 </head>
 <body>
-	<%-- Including header --%>
+	<%-- Include header --%>
 	<jsp:include page="header.jsp" />
 	<section class="main-content">
+		<%-- Include sidebar navigation --%>
 		<jsp:include page="leftNavigation.jsp" />
 
 		<div class="list-content">
@@ -35,11 +37,12 @@
 					<h3>Personal Details</h3>
 				</div>
 
-				<%-- Form for editing user profile --%>
+				<%-- Profile edit form begins --%>
 				<div class="add-staff-form-container">
 					<form action="UserEditProfile" method="post" id="editProfileForm"
 						enctype="multipart/form-data">
-						<%-- Top row --%>
+
+						<%-- First row of input fields --%>
 						<div class="form-row">
 							<div class="form-column">
 								<label for="firstName">First Name</label> <input type="text"
@@ -64,7 +67,7 @@
 							</div>
 						</div>
 
-						<%-- Bottom row --%>
+						<%-- Second row of input fields --%>
 						<div class="form-row">
 							<div class="form-column">
 								<label for="location">Location</label> <input type="text"
@@ -85,22 +88,24 @@
 							</div>
 						</div>
 
+						<%-- Profile picture file input --%>
 						<div class="form-row">
 							<div class="form-column">
 								<label for="image"
-									style="border: 1px solid blue; padding: 10px 20px; cursor: pointer;">Add
-									Profile Picture</label> <input type="file" id="image" name="image"
+									style="border: 1px solid blue; padding: 10px 20px; cursor: pointer;">
+									Add Profile Picture </label> <input type="file" id="image" name="image"
 									style="display: none;" required>
 							</div>
+
+							<%-- Display error message if available --%>
 							<c:if test="${not empty error}">
 								<div class="form-column">
 									<p style="text-align: center; color: red;">${error }</p>
 								</div>
-
 							</c:if>
 						</div>
 
-						<%-- Clear and Submit buttons --%>
+						<%-- Form buttons (Clear and Submit) --%>
 						<div class="form-row">
 							<div class="buttons">
 								<button class="form-buttons" type="button"
@@ -110,10 +115,15 @@
 						</div>
 					</form>
 				</div>
+				<%-- End of form container --%>
 			</div>
 		</div>
 	</section>
+
+	<%-- Include JavaScript for sidebar --%>
 	<script src="${pageContext.request.contextPath}/js/leftNavAdmin.js"></script>
+
+	<%-- JavaScript to pre-fill user details from session --%>
 	<script>
 		window
 				.addEventListener(

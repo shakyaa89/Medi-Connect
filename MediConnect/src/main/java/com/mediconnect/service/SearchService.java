@@ -15,6 +15,7 @@ public class SearchService {
 
 	private Connection dbConnection;
 
+	// Initialize database connection
 	public SearchService() {
 		try {
 			this.dbConnection = Dbconfig.getDbConnection();
@@ -24,12 +25,14 @@ public class SearchService {
 		}
 	}
 
+	// Search doctors by name or specialization with a keyword
 	public List<DoctorModel> searchDoctor(String search){
 		if (dbConnection == null) {
 			System.out.println("Database not connected!");
 			return null;
 		}
 		
+		// SQL query to search doctors by concatenated name or specialization
 		String searchQuery = "SELECT * FROM doctors WHERE CONCAT(doctor_first_name, ' ', doctor_last_name) LIKE ? OR doctor_first_name LIKE ? OR doctor_last_name LIKE ? OR doctor_specialization LIKE ?";
 		
 		List<DoctorModel> searchedDoctor = new ArrayList<DoctorModel>();
@@ -37,6 +40,8 @@ public class SearchService {
 		try {
 			PreparedStatement searchStmt = dbConnection.prepareStatement(searchQuery);
 			String searchKeyword = "%" + search + "%";
+			
+			// Set the search keyword for each LIKE parameter
 			searchStmt.setString(1, searchKeyword);
 			searchStmt.setString(2, searchKeyword);
 			searchStmt.setString(3, searchKeyword);
@@ -44,6 +49,7 @@ public class SearchService {
 			
 			ResultSet result = searchStmt.executeQuery();
 			
+			// Iterate over results and create DoctorModel objects
 			while(result.next()) {
 				Integer doctorId = result.getInt("doctor_id");
 				String doctorFirstName = result.getString("doctor_first_name");
@@ -55,14 +61,17 @@ public class SearchService {
 				String doctorSpecialization = result.getString("doctor_specialization");
 				String doctorExperience = result.getString("doctor_experience");
 				String doctorImage = result.getString("doctor_image");
+				
 				DoctorModel doctorObj = new DoctorModel(doctorId, doctorFirstName, doctorLastName, doctorEmail, doctorPhoneNumber, doctorAddress, doctorGender, doctorSpecialization, doctorExperience, doctorImage);
-			
+				
+				// Add doctor to the result list
 				searchedDoctor.add(doctorObj);
 			}
 			
 			return searchedDoctor;
 			
 		}catch(Exception e) {
+			// Return null on exception
 			return null;
 		}
 	}

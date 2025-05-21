@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%-- Set page encoding and content type --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%-- Include JSTL core and functions tag libraries --%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>MediConnect</title>
+<%-- Link external stylesheet for register page --%>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/register.css" />
 </head>
@@ -28,11 +31,12 @@
 				</div>
 
 				<%-- Registration form --%>
-				<form class="form-section" action="${pageContext.request.contextPath}/register" method="post"
+				<form class="form-section"
+					action="${pageContext.request.contextPath}/register" method="post"
 					enctype="multipart/form-data">
 					<div>
 
-						<%-- First row --%>
+						<%-- First row: First name and Last name --%>
 						<div class="form-row">
 							<div class="form-column">
 								<label for="firstname">First Name</label> <input type="text"
@@ -44,7 +48,7 @@
 							</div>
 						</div>
 
-						<%-- Second row --%>
+						<%-- Second row: Username and Location --%>
 						<div class="form-row">
 							<div class="form-column">
 								<label for="username">Username</label> <input type="text"
@@ -56,7 +60,7 @@
 							</div>
 						</div>
 
-						<%-- Third row --%>
+						<%-- Third row: Email and Phone number --%>
 						<div class="form-row">
 							<div class="form-column">
 								<label for="email">Email</label> <input type="email" id="email"
@@ -68,7 +72,7 @@
 							</div>
 						</div>
 
-						<%-- Fourth row --%>
+						<%-- Fourth row: Gender and Date of Birth --%>
 						<div class="form-row">
 							<div class="form-column">
 								<label for="gender">Gender</label> <select name="gender"
@@ -84,7 +88,7 @@
 							</div>
 						</div>
 
-						<%-- Fifth row --%>
+						<%-- Fifth row: Password and Retype password --%>
 						<div class="form-row">
 							<div class="form-column">
 								<label for="password">Password</label> <input type="password"
@@ -96,17 +100,19 @@
 									required>
 							</div>
 						</div>
+
+						<%-- Sixth row: Profile picture upload --%>
 						<div class="form-row image-row">
 							<div class="form-column">
 								<label for="image"
-									style="border: 1px solid blue; padding: 10px 20px; cursor: pointer;">Add
-									Profile Picture</label> <input type="file" id="image" name="image"
+									style="border: 1px solid blue; padding: 10px 20px; cursor: pointer;">
+									Add Profile Picture</label> <input type="file" id="image" name="image"
 									style="display: none;" required>
 							</div>
 						</div>
 					</div>
 
-					<%-- Sign-up Button --%>
+					<%-- Submit button and login redirect --%>
 					<div class="signup-buttons">
 						<c:if test="${not empty error}">
 							<p style="text-align: center; color: red;">${error }</p>

@@ -12,6 +12,7 @@ public class RegisterService {
 	
 	private Connection dbConnection;
 	
+	// Initialize database connection
 	public RegisterService() {
 		try {
 			this.dbConnection = Dbconfig.getDbConnection();
@@ -21,17 +22,20 @@ public class RegisterService {
 		}
 	}
 
-
+	// Add a new user to the database
 	public Boolean addUser(UserModel UserModel) {
 		if(dbConnection == null) {
 			System.err.println("Database not connected!");
 			return null;
 		}
 		
+		// SQL insert query to add user record
 		String insertQuery = "INSERT INTO users (user_id, user_first_name, user_last_name, user_username, user_email, user_phonenumber, user_gender, user_dob, user_location, user_password, user_role, user_image) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try{
 			PreparedStatement insertStmt = dbConnection.prepareStatement(insertQuery);
+			
+			// Set parameters from UserModel
 			insertStmt.setString(1, UserModel.getUser_first_name());
 			insertStmt.setString(2, UserModel.getUser_last_name());
 			insertStmt.setString(3, UserModel.getUser_username());
@@ -44,6 +48,7 @@ public class RegisterService {
 			insertStmt.setString(10, UserModel.getUser_role());
 			insertStmt.setString(11, UserModel.getUser_image());
 			
+			// Execute insert and return true if successful
 			return insertStmt.executeUpdate() > 0;
 			
 		}catch(SQLException e) {

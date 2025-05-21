@@ -19,6 +19,7 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class AdminEditDoctorController
+ * Handles fetching doctor details for editing and updating doctor info.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/AdminEditDoctor" })
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,
@@ -31,9 +32,8 @@ public class AdminEditDoctorController extends HttpServlet {
 	private RedirectionUtil redirectionUtil;
 	private UpdateService updateService;
 
-
     /**
-     * @see HttpServlet#HttpServlet()
+     * Constructor initializes services and utilities.
      */
     public AdminEditDoctorController() {
         super();
@@ -41,11 +41,12 @@ public class AdminEditDoctorController extends HttpServlet {
         this.extractionUtil = new ExtractionUtil();
 		this.redirectionUtil = new RedirectionUtil();
 		this.updateService = new UpdateService();
-
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET request.
+	 * Sets doctorId, doctor list, and availability list in session for the edit page.
+	 * Forwards to AdminEditDoctor.jsp.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String doctorId = request.getParameter("doctorId");
@@ -58,13 +59,17 @@ public class AdminEditDoctorController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST request by forwarding to doPut method for update operation.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPut(request, response);
 	}
 	
+	/**
+	 * Handles PUT request (called internally) to update doctor details.
+	 * Extracts updated doctor and availability models, updates database, and handles image upload.
+	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
@@ -80,7 +85,6 @@ public class AdminEditDoctorController extends HttpServlet {
 			
 			Boolean isUpdated = updateService.updateDoctor(doctorModel, doctorAvailabilityModel, doctorId);
 
-			
 			if (isUpdated == null) {
 				System.out.println("Error Updating Doctor");
 			} else {

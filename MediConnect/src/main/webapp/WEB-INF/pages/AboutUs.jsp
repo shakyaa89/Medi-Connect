@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>MediConnect</title>
+<%-- Link to About Us page CSS --%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/AboutUs.css" />
 </head>
 <body>
 	
+	<%-- Include common header --%>
 	<jsp:include page="header.jsp" />
 	
     <section class="about-section">
@@ -38,10 +40,12 @@
       </div>
 
       <div class="about-image">
+        <%-- Display About Us illustration image --%>
         <img src="${pageContext.request.contextPath}/images/aboutusimage.jpg" alt="About Us Illustration" />
       </div>
     </section>
     
+    <%-- Include common footer --%>
     <jsp:include page="footer.jsp" />
     
 </body>

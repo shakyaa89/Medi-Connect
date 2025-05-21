@@ -9,32 +9,33 @@ import java.io.IOException;
 
 /**
  * Servlet implementation class ContactUsController
+ * Handles requests to the Contact Us page.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/ContactUs" })
 public class ContactUsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor.
      */
     public ContactUsController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET request.
+	 * Forwards request to ContactUs JSP page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// Forward to ContactUs page
 		request.getRequestDispatcher("/WEB-INF/pages/ContactUs.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST request.
+	 * Forwards POST requests to doGet to display ContactUs page.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

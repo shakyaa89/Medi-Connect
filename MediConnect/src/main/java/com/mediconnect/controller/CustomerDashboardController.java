@@ -13,13 +13,15 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class CustomerDashboardController
+ * Handles customer dashboard requests by fetching user-specific dashboard data.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/CustomerDashboard" })
 public class CustomerDashboardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DashboardService dashboardService; 
+    
     /**
-     * @see HttpServlet#HttpServlet()
+     * Constructor initializes DashboardService instance.
      */
     public CustomerDashboardController() {
         super();
@@ -27,7 +29,9 @@ public class CustomerDashboardController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET requests.
+	 * Retrieves user from session, fetches dashboard data for that user,
+	 * and forwards to CustomerDashboard JSP page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserModel userObj = (UserModel) SessionUtil.getAttribute(request, "userObj");
@@ -40,10 +44,9 @@ public class CustomerDashboardController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST requests by delegating to doGet.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -19,10 +19,12 @@ import com.mediconnect.util.ValidationUtil;
 
 /**
  * Servlet implementation class CustomerBookAppointmentController
+ * Handles customer appointment booking process.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/CustomerBookAppointment" })
 public class CustomerBookAppointmentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	DashboardService dashboardService;
 	ExtractionUtil extractionUtil;
 	AddService addService;
@@ -30,7 +32,7 @@ public class CustomerBookAppointmentController extends HttpServlet {
 	ValidationUtil validationUtil;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * Constructor initializes service and utility instances.
 	 */
 	public CustomerBookAppointmentController() {
 		super();
@@ -43,8 +45,9 @@ public class CustomerBookAppointmentController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Handles GET request.
+	 * Retrieves doctor details and sets them in session,
+	 * then forwards to appointment booking JSP page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -61,8 +64,9 @@ public class CustomerBookAppointmentController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Handles POST request.
+	 * Validates appointment date and time, extracts appointment data,
+	 * attempts to add the appointment, handles success or failure cases.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -77,32 +81,38 @@ public class CustomerBookAppointmentController extends HttpServlet {
 			
 			LocalDate appDate = LocalDate.parse(request.getParameter("date"));
 			
+			// Validate appointment date within allowed range
 			if(!validationUtil.isAppointmentValid(appDate)) {
 				redirectionUtil.setMsgAttribute(request, "error", "Date should be between tomorrow and 6 months!");
 				request.getRequestDispatcher("WEB-INF/pages/CustomerBookAppointment.jsp").forward(request, response);
 				return;
-			}else if(!validationUtil.isTimeValid(startTime, endTime, enteredTime)) {
+			}
+			// Validate appointment time within doctor's available hours
+			else if(!validationUtil.isTimeValid(startTime, endTime, enteredTime)) {
 				redirectionUtil.setMsgAttribute(request, "error", "Time should be between " + startTime + " and " + endTime);
 				request.getRequestDispatcher("WEB-INF/pages/CustomerBookAppointment.jsp").forward(request, response);
 				return;
 			}
 
+			// Extract appointment data from request
 			AppointmentModel appointmentModel = extractionUtil.extractAppointmentModel(request, response);
 			
+			// Add appointment to system
 			Boolean isAdded = addService.addAppointment(appointmentModel, doctorId, userId);
 			
-			
-			
 			if(isAdded == null) {
+				// Server error handling
 				redirectionUtil.setMsgAttribute(request, "error", "Internal Server Error!");
 				request.getRequestDispatcher("WEB-INF/pages/CustomerBookAppointment.jsp").forward(request, response);
 				System.out.println("Error appointment");
 				return;
 			}else if(isAdded == false){
+				// Duplicate appointment detected
 				redirectionUtil.setMsgAttribute(request, "error", "You already have an appointment with this doctor!");
 				request.getRequestDispatcher("WEB-INF/pages/CustomerBookAppointment.jsp").forward(request, response);
 				return;
 			}else {
+				// Success: redirect to customer dashboard
 				redirectionUtil.redirectToPage(request, response, "CustomerDashboard");
 			}
 			

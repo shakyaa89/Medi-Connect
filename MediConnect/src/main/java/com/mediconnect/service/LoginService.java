@@ -14,6 +14,7 @@ public class LoginService {
 	
 	private Connection DbConnection;
 	
+	// Initialize DB connection
 	public LoginService() {
 		try {
 			DbConnection = Dbconfig.getDbConnection();
@@ -23,6 +24,7 @@ public class LoginService {
 		}
 	}
 	
+	// Verify if user credentials are valid
 	public Boolean loginUser(UserModel userModel){
 		
 		if(DbConnection == null) {
@@ -30,33 +32,39 @@ public class LoginService {
 			return null;
 		}
 		
-			String fetchStmt = "SELECT user_username, user_password FROM users WHERE user_username = ?";
-			
-			try {
-				PreparedStatement stmt = DbConnection.prepareStatement(fetchStmt);
-				stmt.setString(1, userModel.getUser_username());
-				
-				ResultSet result = stmt.executeQuery();
-
-				if (result.next()) {
-					return validatePassword(result, userModel);
-				}
-				
-			}catch(SQLException e) {
-				e.printStackTrace();
-				return null;
-			}
+		// SQL query to fetch username and password for given username
+		String fetchStmt = "SELECT user_username, user_password FROM users WHERE user_username = ?";
 		
-		return false;
+		try {
+			PreparedStatement stmt = DbConnection.prepareStatement(fetchStmt);
+			stmt.setString(1, userModel.getUser_username());
+			
+			ResultSet result = stmt.executeQuery();
+
+			// If user found, validate password
+			if (result.next()) {
+				return validatePassword(result, userModel);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
+		
+		// Return false if no user found or invalid
+		return false;
+	}
 	
+	// Compare given password with encrypted password from DB
 	public Boolean validatePassword(ResultSet result, UserModel userModel) throws SQLException{
 		String dbUsername = result.getString("user_username");
 		String dbPassword = result.getString("user_password");
 		
+		// Decrypt DB password and compare with input password
 		return dbUsername.equals(userModel.getUser_username()) && PasswordEncryptionUtil.decrypt(dbPassword).equals(userModel.getUser_password());
 	}
 	
+	// Fetch full UserModel object from DB by username
 	public UserModel getUserObjectFromDatabase(String username) {
 	    if (DbConnection == null) {
 	        System.out.println("Database not connected!");
@@ -71,6 +79,7 @@ public class LoginService {
 	        fetchUserStmt.setString(1, username);
 	        results = fetchUserStmt.executeQuery();
 
+	        // Map database record to UserModel object if user found
 	        if (results.next()) {
 	            int userId = results.getInt("user_id");
 	            String name = results.getString("user_first_name");

@@ -39,7 +39,7 @@
 					<label for="password">Password</label>
 				</div>
 				<input type="password" name="password" id="password" required />
-				
+
 				<c:if test="${not empty error}">
 					<p style="text-align: center; color: red;">${error}</p>
 				</c:if>

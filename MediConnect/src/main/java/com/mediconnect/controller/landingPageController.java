@@ -12,13 +12,15 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class landingPageController
+ * Handles requests to the landing page and prepares data for display.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/index.jsp", "/" })
 public class landingPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DashboardService dashboardService;
+    
     /**
-     * @see HttpServlet#HttpServlet()
+     * Constructor initializes DashboardService.
      */
     public landingPageController() {
         super();
@@ -26,7 +28,9 @@ public class landingPageController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET requests.
+	 * Retrieves doctor list and availability list and stores in session.
+	 * Forwards request to the index JSP page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SessionUtil.setAttribute(request, "doctorList", dashboardService.getDoctorList());
@@ -36,10 +40,9 @@ public class landingPageController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST requests by delegating to doGet method.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

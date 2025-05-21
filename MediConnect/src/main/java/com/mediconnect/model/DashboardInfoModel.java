@@ -1,15 +1,31 @@
 package com.mediconnect.model;
 
 public class DashboardInfoModel {
+	// Total number of doctors
 	private int numOfDoctor;
+	
+	// Total number of staff members
 	private int numOfStaff;
+	
+	// Total number of appointments
 	private int numOfAppointment;
+	
+	// Total number of customers
 	private int numOfCustomer;
+	
+	// Number of male customers
 	private int numOfMaleCustomer;
+	
+	// Number of female customers
 	private int numOfFemaleCustomer;
+	
+	// Number of male staff members
 	private int numOfMaleStaff;
+	
+	// Number of female staff members
 	private int numOfFemaleStaff;
 
+	// Constructor to initialize all fields
 	public DashboardInfoModel(int numOfDoctor, int numOfStaff, int numOfAppointment, int numOfCustomer,
 			int numOfMaleCustomer, int numOfFemaleCustomer, int numOfMaleStaff, int numOfFemaleStaff) {
 		super();
@@ -23,14 +39,14 @@ public class DashboardInfoModel {
 		this.numOfFemaleStaff = numOfFemaleStaff;
 	}
 
+	// Constructor to initialize only number of doctors and appointments
 	public DashboardInfoModel(int numOfDoctor, int numOfAppointment) {
 		super();
 		this.numOfDoctor = numOfDoctor;
 		this.numOfAppointment = numOfAppointment;
 	}
 
-
-
+	// Getter and setter methods for each field
 	public int getNumOfMaleStaff() {
 		return numOfMaleStaff;
 	}

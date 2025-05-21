@@ -16,6 +16,7 @@ import com.mediconnect.util.RedirectionUtil;
 
 /**
  * Servlet implementation class AdminAddStaffController
+ * Handles adding new staff members including uploading their image.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/AdminAddStaff" })
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,
@@ -28,29 +29,34 @@ public class AdminAddStaffController extends HttpServlet {
 	private RedirectionUtil redirectionUtil;
 	private ExtractionUtil extractionUtil;
 	
+	/**
+	 * Initializes service and utility instances.
+	 */
 	public void init() throws ServletException {
 		this.addService = new AddService();
 		this.redirectionUtil = new RedirectionUtil();
 		this.extractionUtil = new ExtractionUtil();
 	}
+	
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor.
      */
     public AdminAddStaffController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET request.
+	 * Forwards to AdminAddStaff.jsp page to show the staff addition form.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/pages/AdminAddStaff.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST request.
+	 * Extracts staff data from the form, attempts to add staff, and upload staff image.
+	 * Redirects to AdminDashboard on success.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -71,7 +77,6 @@ public class AdminAddStaffController extends HttpServlet {
 					System.out.println("Error adding");
 					e.printStackTrace(); 
 				}
-				
 			} else {
 				System.out.println("Error adding");
 			}

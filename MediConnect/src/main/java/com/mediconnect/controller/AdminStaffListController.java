@@ -14,15 +14,18 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class AdminStaffListController
+ * Handles listing and deletion of staff by admin users.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/AdminStaffList" })
 public class AdminStaffListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	DashboardService dashboardService;
 	DeleteService deleteService;
 	RedirectionUtil redirectionUtil;
+    
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor initializing services and utilities.
      */
     public AdminStaffListController() {
         super();
@@ -32,17 +35,18 @@ public class AdminStaffListController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET request.
+	 * Retrieves the staff list and forwards to AdminStaffList.jsp.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		SessionUtil.setAttribute(request, "staffList", dashboardService.getStaffList());
-		
 		request.getRequestDispatcher("/WEB-INF/pages/AdminStaffList.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST request.
+	 * Deletes a staff member based on staffId parameter.
+	 * Redirects back to the staff list page after deletion.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int staffId = Integer.parseInt(request.getParameter("staffId"));
@@ -54,7 +58,5 @@ public class AdminStaffListController extends HttpServlet {
 		}else {
 			redirectionUtil.redirectToPage(request, response, "AdminStaffList");
 		}
-				
 	}
-
 }

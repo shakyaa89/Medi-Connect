@@ -18,18 +18,23 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class AdminEditStaffController
+ * Handles displaying and updating staff details by admin.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/AdminEditStaff" })
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,
-maxFileSize = 1024 * 1024 * 10,
-maxRequestSize = 1024 * 1024 * 50)
+	maxFileSize = 1024 * 1024 * 10,
+	maxRequestSize = 1024 * 1024 * 50)
 public class AdminEditStaffController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	private DashboardService dashboardService;
 	private RedirectionUtil redirectionUtil;
 	private ExtractionUtil extractionUtil;
 	private UpdateService updateService;
 	
+    /**
+     * Constructor initializing required services and utilities.
+     */
     public AdminEditStaffController() {
         super();
         dashboardService = new DashboardService();
@@ -39,7 +44,9 @@ public class AdminEditStaffController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET request.
+	 * Fetches staff details by staffId and sets it in session.
+	 * Forwards to AdminEditStaff.jsp for editing.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int staffId = Integer.parseInt(request.getParameter("staffId"));
@@ -53,8 +60,11 @@ public class AdminEditStaffController extends HttpServlet {
 				
 		request.getRequestDispatcher("/WEB-INF/pages/AdminEditStaff.jsp").forward(request, response);
 	}
+	
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST request.
+	 * Extracts updated staff info and updates staff in database.
+	 * Handles image upload and redirects back to staff list on success.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

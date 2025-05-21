@@ -12,6 +12,7 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class StaffDashboardController
+ * Handles requests to display the staff dashboard page.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/StaffDashboard" })
 public class StaffDashboardController extends HttpServlet {
@@ -19,7 +20,7 @@ public class StaffDashboardController extends HttpServlet {
 	private DashboardService dashboardService;
 
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor initializing the DashboardService.
      */
     public StaffDashboardController() {
         super();
@@ -27,19 +28,20 @@ public class StaffDashboardController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET requests to load dashboard data and forward to StaffDashboard JSP.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Retrieve admin dashboard info and set it in session for display
 		SessionUtil.setAttribute(request, "dashboardNumbers", dashboardService.getAdminDashboardInfo());
 
+		// Forward request to StaffDashboard JSP page
 		request.getRequestDispatcher("/WEB-INF/pages/StaffDashboard.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST requests by delegating to doGet to display dashboard.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

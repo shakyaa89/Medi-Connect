@@ -14,6 +14,7 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class AdminDoctorListController
+ * Handles displaying the list of doctors and deleting a doctor.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/AdminDoctorList" })
 public class AdminDoctorListController extends HttpServlet {
@@ -21,35 +22,40 @@ public class AdminDoctorListController extends HttpServlet {
 	private DashboardService dashboardService;
 	private DeleteService deleteService;
 	private RedirectionUtil redirectionUtil;
+    
     /**
-     * @see HttpServlet#HttpServlet()
+     * Constructor initializes required services and utilities.
      */
     public AdminDoctorListController() {
         super();
         dashboardService = new DashboardService();
         deleteService = new DeleteService();
         redirectionUtil = new RedirectionUtil();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET request.
+	 * Retrieves doctor list and sets it in session.
+	 * Forwards to AdminDoctorList.jsp to display doctors.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		SessionUtil.setAttribute(request, "doctorList", dashboardService.getDoctorList());
-		
 		request.getRequestDispatcher("/WEB-INF/pages/AdminDoctorList.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST request.
+	 * Internally calls doDelete to process doctor deletion.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doDelete(request, response);
 	}
 	
+	/**
+	 * Handles DELETE request.
+	 * Deletes doctor based on doctorId parameter.
+	 * Redirects to AdminDashboard on success or prints error on failure.
+	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int doctorId = Integer.parseInt(request.getParameter("doctorId"));
 		

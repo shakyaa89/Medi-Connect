@@ -10,13 +10,13 @@ import java.util.List;
 import com.mediconnect.config.Dbconfig;
 import com.mediconnect.model.DoctorModel;
 
-
 public class ExtractDoctorUtil {
 	
 	private Connection DbConnection;
 
 	public ExtractDoctorUtil() {
 		try {
+			// Initialize database connection
 			DbConnection = Dbconfig.getDbConnection();
 		}catch(SQLException | ClassNotFoundException ex) {
 			System.out.println("Error");
@@ -24,6 +24,7 @@ public class ExtractDoctorUtil {
 		}
 	}
 	
+	// Retrieves list of all doctors from database
 	public List<DoctorModel> getDoctorList(){
 		if(DbConnection == null) {
 			System.out.println("Database not connected!");
@@ -32,6 +33,7 @@ public class ExtractDoctorUtil {
 		
 		List<DoctorModel> doctorList = new ArrayList<DoctorModel>();
 		
+		// SQL query to fetch all doctors
 		String fetchDoctorQuery = "SELECT * FROM doctors";
 		
 		try {
@@ -39,6 +41,7 @@ public class ExtractDoctorUtil {
 			
 			ResultSet results = fetchStmt.executeQuery();
 			
+			// Iterate through result set and create DoctorModel objects
 			while(results.next()) {
 				Integer doctorId = results.getInt("doctor_id");
 				String doctorFirstName = results.getString("doctor_first_name");
@@ -49,6 +52,7 @@ public class ExtractDoctorUtil {
 				String doctorGender = results.getString("doctor_gender");
 				String doctorSpecialization = results.getString("doctor_specialization");
 				String doctorExperience = results.getString("doctor_experience");
+				
 				DoctorModel doctorObj = new DoctorModel(doctorId, doctorFirstName, doctorLastName, doctorEmail, doctorPhoneNumber, doctorAddress, doctorGender, doctorSpecialization, doctorExperience);
 				
 				doctorList.add(doctorObj);

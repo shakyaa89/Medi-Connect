@@ -3,11 +3,19 @@ package com.mediconnect.model;
 import java.time.LocalDate;
 
 public class AppointmentModel {
+	// Appointment ID
 	Integer appointment_id;
+	
+	// Date of the appointment
 	LocalDate appointment_date;
+	
+	// Time of the appointment 
 	String appointment_time;
+	
+	// Status of the appointment 
 	String status;
 
+	// Constructor with all fields
 	public AppointmentModel(Integer appointment_id, LocalDate appointment_date, String appointment_time,
 			String status) {
 		super();
@@ -17,12 +25,14 @@ public class AppointmentModel {
 		this.status = status;
 	}
 
+	// Constructor with date and time only
 	public AppointmentModel(LocalDate appointment_date, String appointment_time) {
 		super();
 		this.appointment_date = appointment_date;
 		this.appointment_time = appointment_time;
 	}
 
+	// Getter and setter methods for appointment_id
 	public Integer getAppointment_id() {
 		return appointment_id;
 	}
@@ -31,6 +41,7 @@ public class AppointmentModel {
 		this.appointment_id = appointment_id;
 	}
 
+	// Getter and setter methods for appointment_date
 	public LocalDate getAppointment_date() {
 		return appointment_date;
 	}
@@ -39,6 +50,7 @@ public class AppointmentModel {
 		this.appointment_date = appointment_date;
 	}
 
+	// Getter and setter methods for appointment_time
 	public String getAppointment_time() {
 		return appointment_time;
 	}
@@ -47,6 +59,7 @@ public class AppointmentModel {
 		this.appointment_time = appointment_time;
 	}
 
+	// Getter and setter methods for status
 	public String getStatus() {
 		return status;
 	}

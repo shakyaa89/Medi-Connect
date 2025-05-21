@@ -12,13 +12,15 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class CustomerDoctorListController
+ * Handles requests to display the list of doctors and their availability for customers.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/CustomerDoctorList" })
 public class CustomerDoctorListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DashboardService dashboardService;
+    
     /**
-     * @see HttpServlet#HttpServlet()
+     * Constructor initializes DashboardService instance.
      */
     public CustomerDoctorListController() {
         super();
@@ -26,10 +28,11 @@ public class CustomerDoctorListController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET requests.
+	 * Retrieves doctor list and their availability and sets them as session attributes.
+	 * Forwards the request to CustomerDoctorList JSP page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		SessionUtil.setAttribute(request, "doctorList", dashboardService.getDoctorList());
 		SessionUtil.setAttribute(request, "doctorAvailabilityList", dashboardService.getDoctorAvailabilityList());
 		
@@ -37,10 +40,9 @@ public class CustomerDoctorListController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST requests by delegating to doGet.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

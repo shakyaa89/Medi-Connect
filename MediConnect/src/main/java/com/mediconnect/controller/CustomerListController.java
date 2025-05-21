@@ -12,13 +12,15 @@ import com.mediconnect.util.SessionUtil;
 
 /**
  * Servlet implementation class CustomerListController
+ * Handles requests for displaying the list of customers.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/CustomerList" })
 public class CustomerListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DashboardService dashboardService;
+    
     /**
-     * @see HttpServlet#HttpServlet()
+     * Constructor initializes DashboardService.
      */
     public CustomerListController() {
         super();
@@ -26,20 +28,19 @@ public class CustomerListController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET requests.
+	 * Fetches the user list and sets it in session attribute "customerList".
+	 * Forwards request to CustomerList JSP page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		SessionUtil.setAttribute(request, "customerList", dashboardService.getUserList());
-		
 		request.getRequestDispatcher("/WEB-INF/pages/CustomerList.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Handles POST requests by delegating to doGet method.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

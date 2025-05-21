@@ -16,6 +16,7 @@ public class UpdateService {
 
 	private Connection dbConnection;
 
+	// Initialize DB connection in constructor
 	public UpdateService() {
 		try {
 			this.dbConnection = Dbconfig.getDbConnection();
@@ -25,6 +26,7 @@ public class UpdateService {
 		}
 	}
 
+	// Update user information by userId
 	public Boolean updateUser(UserModel userModel, int userId) {
 		if (dbConnection == null) {
 			System.err.println("Database not connected!");
@@ -35,7 +37,7 @@ public class UpdateService {
 
 		try {
 			dbConnection.setAutoCommit(false);
-			
+
 			PreparedStatement insertStmt = dbConnection.prepareStatement(updateQuery);
 			insertStmt.setString(1, userModel.getUser_first_name());
 			insertStmt.setString(2, userModel.getUser_last_name());
@@ -47,7 +49,7 @@ public class UpdateService {
 			insertStmt.setString(8, userModel.getUser_location());
 			insertStmt.setString(9, userModel.getUser_image());
 			insertStmt.setInt(10, userId);
-			
+
 			int isUpdated = insertStmt.executeUpdate();
 			dbConnection.commit();
 			return isUpdated > 0;
@@ -59,6 +61,7 @@ public class UpdateService {
 		}
 	}
 
+	// Update doctor info and availability by doctorId
 	public Boolean updateDoctor(DoctorModel doctorModel, DoctorAvailabilityModel doctorAvModel, int doctorId) {
 		if (dbConnection == null) {
 			System.err.println("Database not connected!");
@@ -103,6 +106,7 @@ public class UpdateService {
 		}
 	}
 
+	// Retrieve userId by username
 	public Integer getUserId(String username) {
 		if (dbConnection == null) {
 			System.out.println("Database not connected!");
@@ -114,9 +118,7 @@ public class UpdateService {
 
 		try {
 			PreparedStatement fetchUserRoleStmt = dbConnection.prepareStatement(fetchUserIdQuery);
-
 			fetchUserRoleStmt.setString(1, username);
-
 			results = fetchUserRoleStmt.executeQuery();
 
 			if (results.next()) {
@@ -130,6 +132,7 @@ public class UpdateService {
 		}
 	}
 
+	// Update user's password by username
 	public Boolean updatePassword(String newPassword, String username) {
 		if (dbConnection == null) {
 			System.out.println("Database not connected!");
@@ -152,15 +155,16 @@ public class UpdateService {
 		}
 
 	}
-	
+
+	// Update appointment details by appointmentId
 	public Boolean updateAppointment(AppointmentModel appointmentModel, int appointmentId) {
 		if (dbConnection == null) {
 			System.out.println("Database not connected!");
 			return null;
 		}
-		
+
 		String updateQuery = "UPDATE appointment SET appointment_date = ?, appointment_time = ? WHERE appointment_id = ?";
-		
+
 		try {
 			PreparedStatement updateStmt = dbConnection.prepareStatement(updateQuery);
 			updateStmt.setDate(1, Date.valueOf(appointmentModel.getAppointment_date()));
@@ -176,7 +180,8 @@ public class UpdateService {
 		}
 
 	}
-	
+
+	// Update staff user info by staffId
 	public Boolean updateStaff(UserModel UserModel, int staffId) {
 		if (dbConnection == null) {
 			System.err.println("Database not connected!");

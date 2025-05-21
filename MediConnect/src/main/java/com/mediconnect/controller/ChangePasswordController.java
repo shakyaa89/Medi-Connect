@@ -17,17 +17,19 @@ import com.mediconnect.util.ValidationUtil;
 
 /**
  * Servlet implementation class ChangePasswordController
+ * Handles the password change requests from logged-in users.
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/ChangePassword" })
 public class ChangePasswordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	LoginService loginService;
 	ValidationUtil validationUtil;
 	UpdateService updateService;
 	RedirectionUtil redirection;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * Default constructor initializing services and utilities.
 	 */
 	public ChangePasswordController() {
 		super();
@@ -38,18 +40,21 @@ public class ChangePasswordController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Handles GET request.
+	 * Forwards to the ChangePassword JSP page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/pages/ChangePassword.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Handles POST request.
+	 * Processes password change logic:
+	 *  - Checks if old password matches
+	 *  - Validates new password and confirmation
+	 *  - Encrypts and updates password in database
+	 *  - Redirects on success
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -58,12 +63,15 @@ public class ChangePasswordController extends HttpServlet {
 			String oldPassword = request.getParameter("oldpassword");
 			String newPassword = request.getParameter("newpassword");
 			String reNewPassword = request.getParameter("re-newpassword");
+			
 			boolean isPasswordSame = checkPasswordSame(request, oldPassword);
 			
 			if (isPasswordSame == true) {
 				if (validationUtil.isValidPassword(newPassword, reNewPassword)
 						&& validationUtil.isPasswordSame(newPassword, reNewPassword)) {
+					
 					String newEncryptedPassword = PasswordEncryptionUtil.encrypt(newPassword);
+					
 					if (updateService.updatePassword(newEncryptedPassword, username) == null) {
 						System.out.println("Error changing password");
 					} else {
@@ -74,9 +82,12 @@ public class ChangePasswordController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * Checks if the provided old password matches the stored password.
+	 * Decrypts stored password for comparison.
+	 */
 	private boolean checkPasswordSame(HttpServletRequest request, String oldPassword) {
 		try {
 			String username = (String) SessionUtil.getAttribute(request, "username");
@@ -87,11 +98,10 @@ public class ChangePasswordController extends HttpServlet {
 			String decryptedPassword = PasswordEncryptionUtil.decrypt(encryptedPassword);
 
 			return decryptedPassword.equals(oldPassword);
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		
 	}
 
 }
