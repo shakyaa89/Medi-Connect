@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<c:set var="userSession" value="${pageContext.session}" />
+<c:set var="currentRole" value="${userSession.getAttribute('role')}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +78,12 @@
 
 				<%-- Buttons for appointment and contact --%>
 				<div class="healthcare-section-buttons">
-					<button class="appointment-btn">Book an Appointment</button>
+					<c:if test="${ currentRole == null }">
+						<button class="appointment-btn" onclick="window.location.href='login'">Book an Appointment</button>
+					</c:if>
+					<c:if test="${ currentRole == 'Customer' }">
+						<button class="appointment-btn" onclick="window.location.href='CustomerBookAppointment'">Book an Appointment</button>
+					</c:if>
 					<button class="appointment-btn">Contact us</button>
 				</div>
 			</div>
