@@ -50,7 +50,7 @@ public class RoleFilter extends HttpFilter implements Filter {
 		String uri = req.getRequestURI();
 
 		// Allow public resources and pages without login
-		if (uri.endsWith("index") || uri.endsWith("login") || uri.endsWith("AboutUs") || uri.endsWith("ContactUs")
+		if (uri.endsWith("index") || uri.endsWith("login") || uri.endsWith("AboutUs") || uri.endsWith("Blog") || uri.endsWith("ContactUs")
 				|| uri.endsWith("/") || uri.endsWith("AccessDenied") || uri.endsWith("register") || uri.endsWith(".css")
 				|| uri.endsWith(".js") || uri.endsWith(".png") || uri.endsWith(".jpg")) {
 			chain.doFilter(request, response);

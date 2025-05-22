@@ -62,7 +62,7 @@
 				<nav>
 					<ul>
 						<li><a href="index">Home</a></li>
-						<li><a href="#">Blog</a></li>
+						<li><a href="Blog">Blog</a></li>
 						<li><a href="AboutUs">About Us</a></li>
 						<li><a href="ContactUs">Contact Us</a></li>
 
